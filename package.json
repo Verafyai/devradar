@@ -1,11 +1,19 @@
 {
   "name": "devradar",
   "private": true,
+  "description": "DevRadar: one scan of a developer program, plus its MCP server.",
   "type": "module",
+  "bin": {
+    "devradar-mcp": "mcp/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "node dev-server.mjs",
-    "test": "node --test --test-concurrency=1 ./test/devradar.test.js",
-    "pages": "node scripts/render-pages.mjs"
+    "test": "node --test --test-concurrency=1 ./test/devradar.test.js ./test/mcp.test.js",
+    "pages": "node scripts/render-pages.mjs",
+    "mcp": "node mcp/server.js"
   },
   "dependencies": {
     "@vercel/blob": "2.8.2",

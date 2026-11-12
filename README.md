@@ -1,35 +1,83 @@
-# DevRadar
+<p align="center"><img src="favicon.svg" width="96" height="96" alt="DevRadar logo: a radar sweep"></p>
 
-DevRadar is a home for developer-relations apps. A signed-in user saves a company once. Every app starts from that profile.
+<h1 align="center">DevRadar</h1>
 
-The site is static HTML, CSS, and client JavaScript, plus Node serverless functions in `api/`. There is no framework. Deep Scan still uses the existing `/api/scan`, `/api/report`, and `/r/:token` functions. Those files are unchanged. The scan form now lives at `/apps/deep-scan`, and `/scan` redirects there.
+<p align="center">One scan of your whole developer program, in one report.<br>
+<a href="https://devradar.rexstjohn.com">devradar.rexstjohn.com</a> · <a href="https://devradar.rexstjohn.com/docs">Docs</a> · <a href="#mcp-server">MCP server</a></p>
 
-## Run locally
+Developers now meet a product through agents, search and other people's code as often as through its own site. A DevRel team has to know whether an agent can read the docs, what a new developer hits first, who the competitors are and how their docs compare, where the developers gather, and where the product shows up in the places people install from. Each of those is usually a separate audit.
+
+DevRadar does it in one pass. Paste a docs or website URL. In about 90 seconds it reads the site the way an agent, a developer and a competitor would, and returns one report. Free, no account.
+
+## What the scan checks
+
+| | Area | What it looks at |
+|---|---|---|
+| <img src="icons/apps/deep-scan.svg" width="24"> | Agent readiness | robots.txt rules for GPTBot, ClaudeBot and other AI crawlers; what Chrome, ClaudeBot, GPTBot and curl each get back; llms.txt; OpenAPI specs; an advertised MCP server; whether a missing page returns a real 404 |
+| <img src="icons/apps/docs-scanner.svg" width="24"> | Docs and sample code | Whether the docs load over valid TLS, a quickstart, code samples, working search, page freshness, broken links |
+| <img src="icons/apps/competition.svg" width="24"> | Competitors | Companies in your category, with their docs run through the same checks |
+| <img src="icons/apps/developer-profiler.svg" width="24"> | Developer personas | Roles, stacks, and what each needs from your docs |
+| <img src="icons/apps/ideas.svg" width="24"> | Targeting and messaging | Where to reach those developers and what to say |
+| <img src="icons/apps/event-scanner.svg" width="24"> | Events and speakers | Upcoming conferences, meetups and hackathons that match your platform, and who speaks about your space |
+| <img src="icons/apps/influencers.svg" width="24"> | Communities | Official community channels, and the meetups and user groups around your category |
+| <img src="icons/apps/social-trends.svg" width="24"> | Buzz on X | What developers say about you and your competitors on X |
+| <img src="icons/apps/looper.svg" width="24"> | Integrations and adoption | MCP registries, Claude connectors, IDE marketplaces, agent frameworks, and adoption on GitHub |
+
+## MCP server
+
+`mcp/server.js` lets Claude Code, Cursor, Codex and any other MCP client run the scan and read the report. One file, no dependencies, Node 20+, no API key.
+
+```json
+{
+  "mcpServers": {
+    "devradar": {
+      "command": "npx",
+      "args": ["-y", "github:Verafyai/devradar"]
+    }
+  }
+}
+```
+
+Claude Code: `claude mcp add devradar -- npx -y github:Verafyai/devradar`. From a clone, use `node /path/to/devradar/mcp/server.js` as the command.
+
+| Tool | Does |
+|---|---|
+| `devradar_scan` | Scan a docs or website URL. Waits for the report by default (`wait: false` returns the link at once; `timeoutSeconds` up to 300) |
+| `devradar_report` | Read a report by token or link: status, headline, every finding, competitors. `includeEvidence: true` adds each finding's raw evidence |
+
+`DEVRADAR_URL` points the server at another deployment. The server leaves out the email a reader may have given to unlock a report.
+
+## HTTP API
+
+```bash
+curl -X POST https://devradar.rexstjohn.com/api/scan \
+  -H 'content-type: application/json' \
+  -d '{"url": "docs.example.com"}'
+# 202 { token, reportUrl }   started
+# 200 { ..., reused: true }  scanned in the last 24 hours, same report
+# 409 { error, reportUrl }   the domain's daily request budget is used up
+# 429                        8 scans from this address in the last hour
+
+curl https://devradar.rexstjohn.com/api/report/TOKEN
+# the report as JSON; status is "running", then "done"
+```
+
+The full reference is at [devradar.rexstjohn.com/docs](https://devradar.rexstjohn.com/docs).
+
+## How it treats a site
+
+Every request identifies itself as `DevRadar/0.1.0` with a link back to the site, respects robots.txt and reads only public pages. Requests to a host are at least 400 ms apart, each domain has one request budget per 24 hours shared by everyone who scans it, and a scan stops at 150 seconds. Reports are unlisted, and who failed a check is never published.
+
+## Run it locally
 
 ```bash
 npm install
-npm run dev
+npm run dev     # http://127.0.0.1:43123
+npm test        # unit tests, the MCP server, and a live fetch of example.com
+npm run pages   # rebuild the static pages from scripts/render-pages.mjs
 ```
 
-Open http://127.0.0.1:43123
-
-`npm test` runs the unit tests, including a live fetch of example.com.
-
-Without `BLOB_READ_WRITE_TOKEN`, accounts, companies, waitlist emails, and plans are stored as JSON files in `.data/` (or `DEVRADAR_DATA_DIR`). On Vercel, set the blob token so that data survives. Without it, Vercel keeps the same records in `/tmp`, which is ephemeral.
-
-## What works
-
-- Home, header, company switcher, nine app cards, pricing, how it works, privacy, and terms.
-- GitHub OAuth, Google OAuth, and email magic links.
-- Company onboarding that fetches the real site (robots.txt, DevRadar user agent, about 50 pages) and saves the profile.
-- Add, edit, switch, and remove companies. One company is active.
-- Event Scanner: market, location, and time window, ranked from the public confs.tech calendar, with Add to plan.
-- Deep Scan form posts to the existing `/api/scan` endpoint.
-- Waitlist emails for the apps that are not built yet.
-
-## What is stubbed
-
-Developer Profiler, Social Trends, Influencers & Innovators, Docs & Code Scanner, Looper, Competition, and Idea Generator show their page and a waitlist. Their backends are not built. Add to plan stores events for later calendar export. It does not create calendar events yet.
+The site is static HTML and CSS plus Node serverless functions in `api/`, with no framework. The pages are generated by `scripts/render-pages.mjs`; edit that, not the HTML. `scan-form.js` is the only client script on the marketing pages. `api/scan.js` and `api/report.js` are the scan and report, bundled from an earlier codebase and deployed unchanged. `client.js` and `styles.css` belong to the report page.
 
 ## Environment variables
 
@@ -37,31 +85,16 @@ Set these in the host. Do not commit values.
 
 | Name | Used for |
 |---|---|
-| `BLOB_READ_WRITE_TOKEN` | Durable storage for users, companies, sessions, plans, and waitlist. Without it, local JSON or ephemeral `/tmp` is used. |
-| `APP_URL` | Public origin for OAuth redirects, for example `https://devradar.rexstjohn.com`. Falls back to the request host. |
-| `GITHUB_CLIENT_ID` | GitHub sign-in. |
-| `GITHUB_CLIENT_SECRET` | GitHub sign-in. |
-| `GOOGLE_CLIENT_ID` | Google sign-in. |
-| `GOOGLE_CLIENT_SECRET` | Google sign-in. |
-| `RESEND_API_KEY` | Sending magic-link email. |
-| `EMAIL_FROM` | From address for magic-link email. |
-| `BRIGHTDATA_API_KEY` | Optional search during company onboarding, and the existing Deep Scan. |
-| `BRIGHTDATA_SERP_ZONE` | Optional Bright Data zone. Defaults to `serp_api1`. |
-| `BRIGHTDATA_UNLOCKER_ZONE` | Existing Deep Scan unlocker. |
-| `XAI_API_KEY` | Existing Deep Scan. |
-| `OPENAI_API_KEY` | Existing Deep Scan. |
-| `OPENAI_MODEL` | Existing Deep Scan. |
-| `DEVRADAR_ADMIN_TOKEN` | Existing Deep Scan admin actions. |
-| `DEVRADAR_DATA_DIR` | Optional override for the local JSON store. |
-| `PORT` | Local dev server port. Defaults to `43123`. |
+| `BLOB_READ_WRITE_TOKEN` | Durable storage for scans and reports. Without it, a local JSON store (or ephemeral `/tmp` on Vercel) is used |
+| `BRIGHTDATA_API_KEY`, `BRIGHTDATA_SERP_ZONE`, `BRIGHTDATA_UNLOCKER_ZONE` | Search and page unlocking during the scan |
+| `XAI_API_KEY` | Buzz on X, and classifying the category |
+| `OPENAI_API_KEY`, `OPENAI_MODEL` | Wording for personas and targeting. Without it those sections are a plain draft from the fetched pages |
+| `DEVRADAR_ADMIN_TOKEN` | Admin rescans that skip the daily budget |
+| `APP_URL` | Public origin, for example `https://devradar.rexstjohn.com` |
+| `PORT` | Local dev server port. Defaults to `43123` |
 
-If GitHub or Google credentials are missing, those buttons explain which variables to set and do not redirect. If `RESEND_API_KEY` or `EMAIL_FROM` is missing, magic links are sent only when the request host is localhost, and the sign-in link is shown on the page. Any other host gets the configuration message and no link.
-
-OAuth redirect URLs to register with the providers:
-
-- `{APP_URL}/api/auth-callback?provider=github`
-- `{APP_URL}/api/auth-callback?provider=google`
+The account, company and waitlist functions (`api/auth-*`, `api/companies`, `api/session`, `api/plan`, `api/waitlist`, `api/events`, `api/company-scan`) are still deployed but no page uses them since the site became a single scan. Their settings (`GITHUB_CLIENT_*`, `GOOGLE_CLIENT_*`, `RESEND_API_KEY`, `EMAIL_FROM`) can be left unset.
 
 ## Deploy
 
-This directory is the Vercel project: static files at the root and functions in `api/`. `vercel.json` sets function durations, the `/scan` redirect, and the existing `/r/:token` rewrite. The existing Deep Scan store still uses `BLOB_READ_WRITE_TOKEN` when it is set, and a local file store otherwise.
+This directory is the Vercel project: static files at the root and functions in `api/`. `vercel.json` sets function durations, the report rewrites (`/r/:token`, `/api/report/:token`) and redirects from the retired app pages to the home page. `.vercelignore` keeps the repo-only files (`design/`, `test/`, `scripts/`) off the site. Specs and mockups for earlier versions are in `design/`.

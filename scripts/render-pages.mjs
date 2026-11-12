@@ -3,27 +3,19 @@ import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
 
-const APPS = [
-  ["event-scanner", "Event Scanner", "#5CD68C", "", "Find the conferences, meetups and hackathons where your target developers will be, by market and location.", "Find the conferences, meetups and hackathons where your target developers will be."],
-  ["developer-profiler", "Developer Profiler", "#7FB2FF", "soon", "Profiles of the developers who use tools like yours: roles, stacks, languages and where they spend time.", "Profiles of the developers who use tools like yours."],
-  ["social-trends", "Social Trends", "#F2B45C", "soon", "What developers in your space are talking about on X, Reddit, Hacker News and GitHub, this week.", "What developers in your space are talking about on X, Reddit, Hacker News and GitHub, this week."],
-  ["influencers", "Influencers & Innovators", "#F28FB0", "soon", "The builders, creators and maintainers who shape opinion in your category, ranked by real reach.", "The builders, creators and maintainers who shape opinion in your category."],
-  ["docs-scanner", "Docs & Code Scanner", "#9C8CFF", "soon", "A one-time audit of your docs, API reference and sample code for errors, gaps and agent readiness.", "A one-time audit of your docs, API reference and sample code."],
-  ["looper", "Looper", "#4FD1D9", "soon", "Keeps docs, API and sample code in sync as your product changes. Finds breakages and drifted wording on every release.", "Keeps docs, API and sample code in sync as your product changes."],
-  ["competition", "Competition", "#FF8A6B", "soon", "Maps your competitors in a grid and grades each one against you on docs, DX, pricing and community.", "Maps your competitors and grades each one against you."],
-  ["deep-scan", "DevRadar Deep Scan", "#5CD68C", "live", "A full analysis of your site and docs, read the way an agent, a competitor and a developer would.", "A full analysis of your site and docs, read the way an agent, a competitor and a developer would."],
-  ["ideas", "Idea Generator", "#F5D76E", "soon", "App, demo and content ideas generated from what developers in your space are building right now.", "App, demo and content ideas generated from what developers in your space are building right now."],
-].map(([slug, name, color, status, descriptor, blurb]) => ({ slug, name, color, status, descriptor, blurb }));
-
-const PLANNED = {
-  "developer-profiler": ["Target market, prefilled from your company", "Region"],
-  "social-trends": ["Topics and keywords from your company", "Sources: X, Reddit, Hacker News, GitHub", "Time window"],
-  "influencers": ["Category, prefilled from your company", "Region"],
-  "docs-scanner": ["Docs URL", "API reference", "Sample-code repositories"],
-  "looper": ["Repositories", "Docs URL", "Release feed"],
-  "competition": ["Competitors, suggested from your category and editable"],
-  ideas: ["Focus area, prefilled from your company"],
-};
+// What the one scan covers. Each row reuses an icon from icons/apps and
+// describes only what api/scan.js and api/report.js actually do.
+const COVERS = [
+  ["deep-scan", "Agent readiness", "#5CD68C", "Whether AI agents can use your docs: robots.txt rules for GPTBot, ClaudeBot and other AI crawlers, what Chrome, ClaudeBot, GPTBot and curl each get back, llms.txt, OpenAPI specs, an advertised MCP server, and whether a missing page returns a real 404."],
+  ["docs-scanner", "Docs and sample code", "#9C8CFF", "Your docs the way a new developer meets them: whether they load over valid TLS, a quickstart, code samples, working search, how fresh the pages are, and broken links."],
+  ["competition", "Competitors", "#FF8A6B", "The companies in your category, found from your own site and search, with their docs run through the same checks as yours."],
+  ["developer-profiler", "Developer personas", "#7FB2FF", "Who your developers are likely to be: roles, stacks and what each of them needs from your docs."],
+  ["ideas", "Targeting and messaging", "#F5D76E", "Where to reach those developers and what to say to them, drawn from the personas and your category."],
+  ["event-scanner", "Events and speakers", "#5CD68C", "Upcoming conferences, meetups and hackathons that match your platform, from public calendars, and who is speaking about your space."],
+  ["influencers", "Communities", "#F28FB0", "Your official community channels, and the meetups and user groups around your category."],
+  ["social-trends", "Buzz on X", "#F2B45C", "What developers are saying about you and your competitors on X, compared side by side."],
+  ["looper", "Integrations and adoption", "#4FD1D9", "Where you show up in the places agents and developers install from: MCP registries, Claude connectors, IDE marketplaces and agent frameworks, plus adoption on GitHub."],
+].map(([icon, name, color, text]) => ({ icon, name, color, text }));
 
 function page({ title, description, body }) {
   return `<!DOCTYPE html>
@@ -51,17 +43,15 @@ function page({ title, description, body }) {
     <div class="header-actions">
       <nav class="nav-links" aria-label="Primary">
         <a href="/how-it-works">How it works</a>
+        <a href="/docs">Docs</a>
         <a href="/pricing">Pricing</a>
       </nav>
-      <div id="account-slot">
-        <button class="btn btn-outline" type="button" data-action="sign-in">Sign in</button>
-      </div>
     </div>
   </div>
 </header>
 ${body}
 <footer class="site-footer"><div class="shell"><p>© 2026 DevRadar by Rex St. John · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p></div></footer>
-<script src="/site.js" type="module"></script>
+<script src="/scan-form.js" type="module"></script>
 </body>
 </html>
 `;
@@ -96,114 +86,126 @@ function radar() {
   return `<div class="radar-wrap"><svg class="radar" viewBox="0 0 900 640" role="img" aria-label="Radar of developer touchpoints: GitHub, Discord, docs, npm, SDK, API, meetups, hackathons, X and Reddit">${lines}${circles}${dots}<circle cx="${cx}" cy="${cy}" r="4" fill="#F2F5F8"/></svg><div class="radar-sweep"></div></div>`;
 }
 
-function cards() {
-  return APPS.map((app) => {
-    const pill = app.status === "live" ? `<span class="pill pill-live">LIVE</span>` : app.status === "soon" ? `<span class="pill pill-soon">SOON</span>` : "";
-    return `<a class="app-card" href="/apps/${app.slug}">
-      <span class="icon-tile" style="--app:${app.color}"><img src="/icons/apps/${app.slug}.svg" alt=""></span>
-      <h3>${app.name} ${pill}</h3>
-      <p>${app.descriptor}</p>
-      <span class="open">Open ${app.name} →</span>
-    </a>`;
-  }).join("\n");
+function scanForm() {
+  return `<form class="hero-form" data-scan-form>
+          <input class="field" name="url" placeholder="docs.yourcompany.com" aria-label="Docs or website" autocomplete="url" autocapitalize="off" spellcheck="false">
+          <button class="btn-primary btn-lg" type="submit" disabled>Run the scan</button>
+        </form>
+        <p class="hero-error" data-scan-status hidden></p>`;
 }
 
-function profileLine(fallback) {
-  return `<span data-profile-line data-signed-out="${fallback}" data-signed-in="Starting from {name}'s profile.">${fallback}</span>`;
-}
-
-function appPage(app) {
-  const pill = app.status === "live" ? `<span class="pill pill-live">LIVE</span>` : app.status === "soon" ? `<span class="pill pill-soon">SOON</span>` : "";
-  let panel = "";
-  if (app.slug === "event-scanner") {
-    panel = `<form id="event-form" class="panel">
-      <div class="input-grid">
-        <label>Target market<input class="field" name="market" data-prefill="market" placeholder="AI application developers" autocomplete="off"></label>
-        <label>Target location<input class="field" name="location" placeholder="New York, NY · 50 mi" autocomplete="off"></label>
-        <label>When<select class="field" name="window"><option value="1">Next month</option><option value="3" selected>Next 3 months</option><option value="6">Next 6 months</option><option value="12">Next 12 months</option></select></label>
-        <button class="btn-primary btn-lg" type="submit" disabled>Find events</button>
-      </div>
-    </form>
-    <p class="loading" id="event-status" hidden></p>
-    <div id="event-results"></div>`;
-  } else if (app.slug === "deep-scan") {
-    panel = `<form id="deep-form" class="panel stack">
-      <label>Docs or website<input class="field" id="deep-url" data-prefill="docs" placeholder="docs.yourcompany.com" autocomplete="url"></label>
-      <button class="btn-primary btn-lg" id="deep-submit" type="submit" disabled>Run Deep Scan</button>
-      <p class="fine">Same scan as today. It reads the site the way an agent, a competitor and a developer would, then opens your report. About 90 seconds.</p>
-    </form>
-    <p class="loading" id="deep-status" hidden></p>`;
-  } else {
-    const planned = (PLANNED[app.slug] || []).map((item) => `<li>${item}</li>`).join("");
-    panel = `<form class="waitlist-form panel stack" data-app="${app.slug}">
-      <h2>Join the waitlist</h2>
-      <p class="sub">${app.name} is not ready to run yet. Leave your email and we will tell you when it opens.</p>
-      <label>Email<input class="field" type="email" name="email" placeholder="you@company.com" autocomplete="email"></label>
-      <button class="btn-primary" type="submit" disabled>Join the waitlist</button>
-      <p class="fine" data-waitlist-note></p>
-    </form>
-    <section class="panel" style="margin-top:16px">
-      <h2>What it will ask</h2>
-      <ul class="plain-list">${planned}</ul>
-    </section>`;
-  }
-  const body = `<main class="page"><div class="shell">
-    <p class="crumbs"><a href="/#apps">Apps</a> <span aria-hidden="true">›</span> ${app.name}</p>
-    <div class="app-head">
-      <span class="icon-tile" style="--app:${app.color}"><img src="/icons/apps/${app.slug}.svg" width="28" height="28" alt=""></span>
-      <div>
-        <h1>${app.name} ${pill}</h1>
-        <p class="lede">${app.blurb} ${profileLine("Sign in to start from a saved company profile.")}</p>
-      </div>
-    </div>
-    ${panel}
-  </div></main>`;
-  return page({ title: `${app.name} · DevRadar`, description: app.descriptor, body });
+function covers() {
+  return COVERS.map((item) => `<article class="app-card cover">
+      <span class="icon-tile" style="--app:${item.color}"><img src="/icons/apps/${item.icon}.svg" alt=""></span>
+      <h3>${item.name}</h3>
+      <p>${item.text}</p>
+    </article>`).join("\n");
 }
 
 const home = page({
   title: "DevRadar",
-  description: "Agentic DevRel. Automate, streamline, optimize and schedule your developer relations and community work.",
+  description: "One scan of your developer program: agent readiness, docs, competitors, personas, events, communities, buzz and integrations, in one report.",
   body: `<main>
   <section class="hero">
     ${radar()}
     <div class="shell"><div class="hero-copy">
       <p class="eyebrow">DevRadar</p>
-      <h1>Agentic DevRel</h1>
-      <p class="lede">Automate, streamline, optimize and schedule your developer relations and community work with DevRadar's apps, plugins and extensions.</p>
+      <h1>One scan of your whole developer program</h1>
+      <p class="lede">Developers now meet your product through agents, search and other people's code as often as through your own site. DevRadar reads your docs the way an agent, a developer and a competitor would, and puts everything it finds in one report.</p>
       <div id="hero-action">
-        <form id="hero-form" class="hero-form">
-          <input class="field" id="hero-url" name="url" placeholder="yourcompany.com" aria-label="Company website" autocomplete="url" autocapitalize="off" spellcheck="false">
-          <button class="btn-primary btn-lg" id="hero-submit" type="submit" disabled>Scan your company</button>
-        </form>
-        <p class="hint">Sign in to save your company. Takes about 90 seconds. · Search powered by Bright Data</p>
-        <p class="hero-error" id="hero-error" hidden></p>
+        ${scanForm()}
+        <p class="hint">Free. No account. About 90 seconds. Search powered by Bright Data.</p>
       </div>
     </div>
     </div>
   </section>
-  <section class="section" id="apps"><div class="shell">
-    <p class="eyebrow">Apps</p>
-    <h2>Everything a DevRel team runs, on autopilot</h2>
-    <p class="lede">Pick an app. Each one starts from your saved company profile.</p>
-    <div class="apps">${cards()}</div>
+  <section class="section" id="covers"><div class="shell">
+    <p class="eyebrow">What the scan checks</p>
+    <h2>Everything in one report</h2>
+    <p class="lede">Every scan covers all of this. There is nothing to pick and nothing to install.</p>
+    <div class="apps">${covers()}</div>
   </div></section>
 </main>`,
 });
 
 const how = page({
   title: "How it works · DevRadar",
-  description: "Save your company once. Every DevRadar app starts from that profile.",
+  description: "Paste your docs or website. DevRadar reads it politely and returns one report.",
   body: `<main class="page"><div class="shell narrow">
     <p class="eyebrow">How it works</p>
-    <h1>Save the company once. Run the work from there.</h1>
-    <p class="lede">DevRadar is a home for DevRel apps. Sign in, pin a company, and each app starts from the same profile.</p>
+    <h1>Paste a URL. Get one report.</h1>
+    <p class="lede">The scan reads only public pages, identifies itself, and respects robots.txt.</p>
     <div class="steps">
-      <article class="step-card"><h2>1. Sign in</h2><p>GitHub, Google, or a magic link to your work email. No password. We never post on your behalf.</p></article>
-      <article class="step-card"><h2>2. Scan your company</h2><p>Paste a landing page. DevRadar reads the public site, respects robots.txt, and finds docs, API reference, GitHub and community links.</p></article>
-      <article class="step-card"><h2>3. Confirm the profile</h2><p>Fix anything we got wrong, then save. Saving a company does not claim ownership. Anyone can track any public company.</p></article>
-      <article class="step-card"><h2>4. Open an app</h2><p>Event Scanner and Deep Scan run today. The other apps are on the way. Join a waitlist and we will email you when one opens.</p></article>
+      <article class="step-card"><h2>1. Paste your docs or website</h2><p>No account. DevRadar finds your docs, API reference, GitHub and community links from there.</p></article>
+      <article class="step-card"><h2>2. DevRadar reads it</h2><p>It fetches pages as <code>DevRadar/0.1.0</code>, then as Chrome, ClaudeBot, GPTBot and curl to compare what each one gets. Requests are spaced out and every domain has a shared daily budget, so no site gets hammered.</p></article>
+      <article class="step-card"><h2>3. It looks outward</h2><p>It finds your competitors and runs their docs through the same checks, then gathers personas, events, communities, buzz on X, integrations and GitHub adoption.</p></article>
+      <article class="step-card"><h2>4. You get the report</h2><p>About 90 seconds, never more than 150. The report has an unlisted link you can share. Scanning the same domain again within 24 hours returns the same report.</p></article>
     </div>
+    <p class="fine">Everything the scan checks is listed on the <a href="/">home page</a>. The API and the MCP server are in the <a href="/docs">docs</a>.</p>
+  </div></main>`,
+});
+
+const docs = page({
+  title: "Docs · DevRadar",
+  description: "Run DevRadar from the HTTP API or from an agent through the DevRadar MCP server.",
+  body: `<main class="page"><div class="shell narrow prose docs">
+    <p class="eyebrow">Docs</p>
+    <h1>DevRadar docs</h1>
+    <p class="lede">Run the scan from the site, from the HTTP API, or from any agent that speaks MCP.</p>
+
+    <h2 id="scan">Run a scan</h2>
+    <p>Paste a docs or website URL on the <a href="/">home page</a>. The report opens when the scan finishes, in about 90 seconds. Reports are unlisted: anyone with the link can read one, and nothing links to it.</p>
+
+    <h2 id="api">HTTP API</h2>
+    <h3>Start a scan</h3>
+    <pre><code>curl -X POST https://devradar.rexstjohn.com/api/scan \\
+  -H 'content-type: application/json' \\
+  -d '{"url": "docs.example.com"}'</code></pre>
+    <table><tbody>
+      <tr><td><code>202</code></td><td>Started. Returns <code>token</code> and <code>reportUrl</code>.</td></tr>
+      <tr><td><code>200</code></td><td>This domain was scanned in the last 24 hours. Returns that report, with <code>reused: true</code>.</td></tr>
+      <tr><td><code>409</code></td><td>The domain's daily request budget is used up. Returns an <code>error</code> naming the reset time, and the last report if there is one.</td></tr>
+      <tr><td><code>429</code></td><td>This address started 8 scans in the last hour.</td></tr>
+      <tr><td><code>400</code></td><td>The URL cannot be scanned.</td></tr>
+    </tbody></table>
+    <h3>Read a report</h3>
+    <pre><code>curl https://devradar.rexstjohn.com/api/report/TOKEN</code></pre>
+    <p>Returns the report as JSON. <code>status</code> is <code>running</code> until the scan finishes, then <code>done</code>, so poll every few seconds. The main fields:</p>
+    <table><tbody>
+      <tr><td><code>headline</code></td><td>The one-line summary, once the scan is done.</td></tr>
+      <tr><td><code>findings</code></td><td>One entry per check: <code>probe</code>, <code>result</code> (pass, fail, info or unknown), <code>severity</code>, <code>headline</code>, the <code>url</code> it looked at, and the <code>evidence</code> behind it.</td></tr>
+      <tr><td><code>competitors</code></td><td>The competitors the scan found, with their docs URLs.</td></tr>
+      <tr><td><code>banner</code></td><td>The most serious problem, if there is one.</td></tr>
+      <tr><td><code>ceilingHit</code></td><td>True when the 150-second limit cut the scan short. Checks it did not reach come back as <code>unknown</code>.</td></tr>
+    </tbody></table>
+
+    <h2 id="mcp">MCP server</h2>
+    <p>The DevRadar MCP server lets Claude Code, Cursor, Codex and other agents run the scan and read the report. It needs Node 20 or later and no API key. Add it to your agent's MCP settings:</p>
+    <pre><code>{
+  "mcpServers": {
+    "devradar": {
+      "command": "npx",
+      "args": ["-y", "github:Verafyai/devradar"]
+    }
+  }
+}</code></pre>
+    <p>In Claude Code: <code>claude mcp add devradar -- npx -y github:Verafyai/devradar</code></p>
+    <p>The server is one file with no dependencies. To run it without npx, download <a href="/mcp/server.js"><code>server.js</code></a> and use <code>node /path/to/server.js</code> as the command.</p>
+    <table><tbody>
+      <tr><td><code>devradar_scan</code></td><td>Scan a docs or website URL. Waits for the report by default and returns its summary and link.</td></tr>
+      <tr><td><code>devradar_report</code></td><td>Read a report by token or link: headline, every finding, and the competitors found.</td></tr>
+    </tbody></table>
+    <p>Set <code>DEVRADAR_URL</code> to point the server at another deployment.</p>
+
+    <h2 id="limits">How it treats your site</h2>
+    <ul class="plain-list">
+      <li>Every request identifies itself as <code>DevRadar/0.1.0</code>, with a link back to this site.</li>
+      <li>It respects robots.txt and fetches only public pages.</li>
+      <li>Requests to a host are spaced at least 400 ms apart.</li>
+      <li>Each domain has one request budget per 24 hours, shared by everyone who scans it.</li>
+      <li>We never publish who failed a check.</li>
+    </ul>
+    <p>Questions: <a href="mailto:rex@verafy.ai">rex@verafy.ai</a>.</p>
   </div></main>`,
 });
 
@@ -227,20 +229,14 @@ const pricing = page({
   </div></main>`,
 });
 
-const companies = page({
-  title: "Companies · DevRadar",
-  description: "Manage the companies pinned to your DevRadar profile.",
-  body: `<main class="page"><div class="shell narrow"><p class="eyebrow">Companies</p><h1>Your companies</h1><div id="companies-root"><p class="lede">Loading your profile.</p></div></div></main>`,
-});
-
 const privacy = page({
   title: "Privacy · DevRadar",
   description: "What DevRadar stores about you and the public companies you track.",
   body: `<main class="page"><div class="shell narrow prose"><p class="eyebrow">Privacy</p><h1>Privacy</h1>
-    <p>DevRadar stores the account you sign in with (email, name, and the avatar a provider sends) and the company profiles you save. A company profile is built from public pages. Saving one does not claim that you own that company.</p>
-    <p>Company scans identify themselves as DevRadar, respect robots.txt, and stay within a page cap. We do not collect private contact details of developers. People-related apps, when they ship, use public professional profiles only.</p>
-    <p>Waitlist emails are stored so we can tell you when an app opens. Magic links expire after 30 minutes. Session cookies are httpOnly.</p>
-    <p>Reports from Deep Scan stay unlisted. We do not publish who failed a scan.</p>
+    <p>The scan needs no account. It stores the URL you scanned and what it found on public pages, so the report can be read again from its link.</p>
+    <p>Scans identify themselves as DevRadar, respect robots.txt, and stay within a request budget for each domain. We do not collect private contact details of developers.</p>
+    <p>If you give an email to unlock a full report, we store that email with the report.</p>
+    <p>Reports stay unlisted. We do not publish who failed a scan.</p>
     <p>Questions: <a href="mailto:rex@verafy.ai">rex@verafy.ai</a>.</p>
   </div></main>`,
 });
@@ -249,9 +245,9 @@ const terms = page({
   title: "Terms · DevRadar",
   description: "Terms for using DevRadar.",
   body: `<main class="page"><div class="shell narrow prose"><p class="eyebrow">Terms</p><h1>Terms</h1>
-    <p>DevRadar is a project by Rex St. John. The free scan and the apps on this site are provided as available. Paid plans are agreed by email before billing starts.</p>
-    <p>You may track any public company. Do not use DevRadar to break another site's rules, to collect private contact details, or to send mail people did not ask for.</p>
-    <p>Event listings come from the public confs.tech calendar and are ranked for your market and location. Dates and calls for papers can change. Check the event site before you buy a ticket or submit a talk.</p>
+    <p>DevRadar is a project by Rex St. John. The free scan is provided as available. Paid plans are agreed by email before billing starts.</p>
+    <p>You may scan any public company. Do not use DevRadar to break another site's rules, to collect private contact details, or to send mail people did not ask for.</p>
+    <p>Event listings come from public calendars such as confs.tech and from search. Dates and calls for papers can change. Check the event site before you buy a ticket or submit a talk.</p>
     <p>Questions: <a href="mailto:rex@verafy.ai">rex@verafy.ai</a>.</p>
   </div></main>`,
 });
@@ -259,7 +255,7 @@ const terms = page({
 const notFound = page({
   title: "Not found · DevRadar",
   description: "That page is not on DevRadar.",
-  body: `<main class="page"><div class="shell narrow"><p class="eyebrow">404</p><h1>That page is not here.</h1><p class="lede">The scan, the apps, and your companies are still on the home page.</p><p><a class="btn-primary" href="/">Back to DevRadar</a></p></div></main>`,
+  body: `<main class="page"><div class="shell narrow"><p class="eyebrow">404</p><h1>That page is not here.</h1><p class="lede">The scan is on the home page.</p><p><a class="btn-primary" href="/">Back to DevRadar</a></p></div></main>`,
 });
 
 function emDash(html, file) {
@@ -270,17 +266,12 @@ function emDash(html, file) {
 await writeFile(path.join(root, "index.html"), emDash(home, "index"));
 await mkdir(path.join(root, "how-it-works"), { recursive: true });
 await writeFile(path.join(root, "how-it-works/index.html"), emDash(how, "how"));
+await mkdir(path.join(root, "docs"), { recursive: true });
+await writeFile(path.join(root, "docs/index.html"), emDash(docs, "docs"));
 await writeFile(path.join(root, "pricing/index.html"), emDash(pricing, "pricing"));
-await mkdir(path.join(root, "companies"), { recursive: true });
-await writeFile(path.join(root, "companies/index.html"), emDash(companies, "companies"));
 await mkdir(path.join(root, "privacy"), { recursive: true });
 await writeFile(path.join(root, "privacy/index.html"), emDash(privacy, "privacy"));
 await mkdir(path.join(root, "terms"), { recursive: true });
 await writeFile(path.join(root, "terms/index.html"), emDash(terms, "terms"));
 await writeFile(path.join(root, "404.html"), emDash(notFound, "404"));
-for (const app of APPS) {
-  const dir = path.join(root, "apps", app.slug);
-  await mkdir(dir, { recursive: true });
-  await writeFile(path.join(dir, "index.html"), emDash(appPage(app), app.slug));
-}
 console.log("rendered pages");
