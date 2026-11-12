@@ -1,0 +1,14 @@
+{
+  "name": "devradar",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "test": "node --test --test-concurrency=1 ./test/devradar.test.js",
+    "pages": "node scripts/render-pages.mjs"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.8.2",
+    "@vercel/functions": "3.10.1"
+  }
+}

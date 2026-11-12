@@ -1,0 +1,61 @@
+<!doctype html><html><head><meta charset=utf-8><link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap' rel=stylesheet><style>*{box-sizing:border-box}body{margin:0;background:#0A0D12;color:#F2F5F8;font-family:"Inter",system-ui,sans-serif;width:1440px}
+:root{--g:#5CD68C;--gf:#3FB872;--s:#11161D;--s2:#151B23;--b:#222B36;--t2:#C3CCD6;--t3:#8C97A4;--t4:#5F6B78}
+.hd{height:76px;display:flex;align-items:center;padding:0 40px;border-bottom:1px solid #18202A;position:relative;z-index:5;background:rgba(10,13,18,.85)}
+.lg{display:flex;align-items:center;gap:12px}.lg svg{width:36px;height:36px}
+.lg .n{font-size:22px;font-weight:700;letter-spacing:-.01em}.lg .by{font-size:14px;color:var(--t3);margin-left:2px;font-weight:500}
+.nav{margin-left:auto;display:flex;align-items:center;gap:30px;font-size:17px;font-weight:500;color:var(--t2)}
+.btn{border:0;border-radius:10px;font:600 16px Inter,sans-serif;padding:12px 20px;cursor:pointer}
+.btn.p{background:var(--g);color:#06210F}.btn.s{background:transparent;color:#F2F5F8;border:1px solid #2D3845}
+.av{width:36px;height:36px;border-radius:50%;background:#1E2A36;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--g)}
+.co{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--b);border-radius:999px;padding:6px 14px 6px 6px;font-size:16px;color:#fff}
+.co i{width:28px;height:28px;border-radius:50%;background:#D97757;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px;font-weight:700;color:#fff}
+.eb{font-size:14px;font-weight:600;letter-spacing:.16em;color:var(--g);text-transform:uppercase}
+.cap{position:absolute;right:14px;top:84px;font-size:12px;color:var(--t4);z-index:9}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.app{background:var(--s);border:1px solid var(--b);border-radius:18px;padding:24px;display:flex;flex-direction:column;min-height:214px}
+.app .ic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.app .ic svg{width:28px;height:28px}
+.app h3{font-size:21px;font-weight:700;margin:18px 0 8px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.app p{font-size:16px;line-height:1.55;color:var(--t2);margin:0}
+.app .go{margin-top:auto;padding-top:16px;font-size:15px;font-weight:600;color:var(--g)}
+.st{font-size:11px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:999px;color:var(--g);border:1px solid rgba(92,214,140,.5)}
+.flow{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;padding:40px 60px 50px}
+.st2{font-size:13px;letter-spacing:.14em;color:var(--t4);margin-bottom:10px}
+.md{background:#11161D;border:1px solid #2D3845;border-radius:18px;padding:30px;min-height:470px}
+.md h3{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 8px}.md .s{font-size:16.5px;color:var(--t2);line-height:1.5;margin:0 0 22px}
+.ob{display:flex;align-items:center;justify-content:center;gap:12px;height:54px;border-radius:12px;border:1px solid #2D3845;font-size:17px;font-weight:600;margin-bottom:12px;background:#151B23}
+.or{display:flex;align-items:center;gap:12px;color:var(--t4);font-size:14px;margin:18px 0}.or:before,.or:after{content:"";flex:1;height:1px;background:#222B36}
+.f{height:54px;border-radius:12px;border:1px solid #2D3845;background:#0E1218;display:flex;align-items:center;padding:0 16px;font-size:17px;color:var(--t4);margin-bottom:12px}
+.f.v{color:#F2F5F8;border-color:#5CD68C}
+.lbl{font-size:15px;font-weight:600;margin-bottom:8px}
+.full{width:100%;height:54px;font-size:17px}
+.sm{font-size:14px;color:var(--t3);margin-top:14px;line-height:1.5}
+.step{display:flex;align-items:center;gap:14px;font-size:17px;margin:14px 0;color:var(--t4)}
+.step i{width:22px;height:22px;border-radius:50%;border:2px solid #2F3A46;flex:none;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px}
+.step.d{color:var(--t2)}.step.d i{background:#3FB872;border-color:#3FB872;color:#06210F}.step.a{color:#fff;font-weight:600}.step.a i{border-color:#5CD68C;border-top-color:transparent}
+.step small{margin-left:auto;font-size:14px;color:var(--t3);font-weight:400}
+.pb{height:8px;border-radius:4px;background:#1E2731;overflow:hidden;margin:22px 0 10px}.pb i{display:block;height:100%;width:58%;background:#5CD68C}
+.brand{display:flex;gap:16px;align-items:center;padding:16px;border:1px solid #2D3845;border-radius:14px;background:#0E1218;margin-bottom:16px}
+.bl{width:56px;height:56px;border-radius:12px;background:#D97757;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px}
+.links{display:grid;grid-template-columns:120px 1fr 24px;gap:8px 12px;font-size:15.5px;align-items:center;margin-bottom:18px}
+.links .k{color:var(--t3)}.links .u{color:#F2F5F8;font-family:ui-monospace,Menlo,monospace;font-size:14.5px}.links .e{color:var(--t4)}
+.row2{display:flex;gap:12px}</style></head><body><div class="hd"><span class="lg"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="none" stroke="#5CD68C" stroke-width="2.4"/><circle cx="18" cy="18" r="9" fill="none" stroke="#5CD68C" stroke-width="1.6" opacity=".5"/><path d="M18 18L18 2A16 16 0 0129.3 6.7z" fill="#5CD68C" opacity=".85"/><circle cx="18" cy="18" r="2.6" fill="#fff"/></svg><span class="n">DevRadar</span><span class="by">by Rex St. John</span></span><div class="nav"><span>How it works</span><span>Pricing</span><button class="btn s">Sign in</button></div></div><div class="flow">
+<div><div class="st2">STEP 1 · SIGN IN</div><div class="md"><h3>Sign in to DevRadar</h3><p class="s">Save your company once, and every app starts from it.</p>
+<div class="ob"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 011-2.7 3.6 3.6 0 01.1-2.7s.8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 011 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg>Continue with GitHub</div><div class="ob"><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fff"/><text x="12" y="16.5" text-anchor="middle" font-size="13" font-weight="700" fill="#4285F4" font-family="Arial">G</text></svg>Continue with Google</div><div class="or">or</div>
+<div class="lbl">Work email</div><div class="f">you@company.com</div><button class="btn p full">Email me a sign-in link</button>
+<div class="sm">No password. We'll never post anything on your behalf.</div></div></div>
+<div><div class="st2">STEP 2 · TELL US ABOUT YOUR COMPANY</div><div class="md"><h3>Tell us about your company</h3><p class="s">Paste your landing page. We'll find your docs, API reference, GitHub and community on our own.</p>
+<div class="lbl">Your landing page</div><div class="f v">https://www.anthropic.com</div>
+<div class="sm" style="margin:0 0 22px;color:#5CD68C">✓ Looks like a company website</div>
+<button class="btn p full">Scan my company</button><div class="sm">You can add more companies or edit anything later.</div></div></div>
+<div><div class="st2">STEP 3 · SCANNING</div><div class="md"><h3>Scanning anthropic.com…</h3><p class="s">About 60–90 seconds. Keep this window open or come back later.</p>
+<div class="step d"><i>✓</i>Reading the landing page<small>1 page</small></div>
+<div class="step d"><i>✓</i>Finding docs, API and developer portal<small>4 sites</small></div>
+<div class="step a"><i></i>Collecting links: GitHub, community, blog<small>23 links</small></div>
+<div class="step"><i></i>Building your company profile</div>
+<div class="pb"><i></i></div><div class="sm" style="margin:0">0:41 elapsed</div></div></div>
+<div><div class="st2">STEP 4 · CONFIRM AND SAVE</div><div class="md"><h3>Is this your company?</h3><p class="s">Check what we found. Fix anything that's wrong, then save it to your profile.</p>
+<div class="brand"><div class="bl">A</div><div><div style="font-size:20px;font-weight:700">Anthropic</div><div style="font-size:15px;color:var(--t3)">AI safety and research company; builds Claude</div></div><span style="margin-left:auto;color:#5CD68C;font-size:15px">Edit</span></div>
+<div class="links"><span class="k">Website</span><span class="u">anthropic.com</span><span class="e">✎</span><span class="k">Docs</span><span class="u">docs.claude.com</span><span class="e">✎</span><span class="k">API reference</span><span class="u">docs.claude.com/en/api</span><span class="e">✎</span><span class="k">GitHub</span><span class="u">github.com/anthropics</span><span class="e">✎</span><span class="k">Community</span><span class="u">+ Add</span><span class="e"></span></div>
+<div class="row2"><button class="btn s" style="flex:1;height:54px">Not my company</button><button class="btn p" style="flex:2;height:54px">Save to my profile</button></div></div></div>
+</div><div class="cap">Mockup · onboarding flow (modal steps shown side by side)</div></body></html>

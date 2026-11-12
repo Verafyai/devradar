@@ -1,0 +1,159 @@
+[
+  {
+    "name": "ProductWorld",
+    "url": "https://productworld.co",
+    "startDate": "2026-02-18",
+    "endDate": "2026-02-20",
+    "city": "San Jose, CA",
+    "country": "U.S.A.",
+    "online": false,
+    "locales": "EN",
+    "cocUrl": "https://www.devnetwork.com/code-of-conduct/",
+    "twitter": "@DevNetwork_"
+  },
+  {
+    "name": "UX Rotterdam",
+    "url": "https://uxrotterdam.com",
+    "startDate": "2026-04-16",
+    "endDate": "2026-04-17",
+    "city": "Rotterdam",
+    "country": "Netherlands",
+    "online": false,
+    "locales": "EN",
+    "offersSignLanguageOrCC": true,
+    "cocUrl": "https://uxrotterdam.com/code-of-conduct/"
+  },
+  {
+    "name": "Prompt to Product",
+    "url": "https://prompttoproduct.ai",
+    "startDate": "2026-05-18",
+    "endDate": "2026-05-22",
+    "online": true,
+    "locales": "EN",
+    "cocUrl": "https://prompttoproduct.ai/legal/terms"
+  },
+  {
+    "name": "#mtpcon",
+    "url": "https://www.mindtheproduct.com/mtpcon/london",
+    "startDate": "2026-06-15",
+    "endDate": "2026-06-16",
+    "city": "London",
+    "country": "U.K.",
+    "online": false,
+    "locales": "EN",
+    "cocUrl": "https://www.mindtheproduct.com/mtpcon/london/terms/"
+  },
+  {
+    "name": "inside agile: Product Owner AI Day",
+    "url": "https://ai.pod.inside-agile.de",
+    "startDate": "2026-07-09",
+    "endDate": "2026-07-09",
+    "online": true,
+    "locales": "DE",
+    "cocUrl": "https://ai.pod.inside-agile.de/code_of_conduct.php"
+  },
+  {
+    "name": "SmashingConf Freiburg",
+    "url": "https://smashingconf.com/freiburg-2026",
+    "startDate": "2026-09-07",
+    "endDate": "2026-09-10",
+    "city": "Freiburg",
+    "country": "Germany",
+    "online": false,
+    "locales": "EN",
+    "offersSignLanguageOrCC": true,
+    "cocUrl": "https://smashingconf.com/codeofconduct",
+    "bluesky": "smashingconf.com",
+    "mastodon": "@smashingconf@mastodon.social",
+    "twitter": "@smashingconf"
+  },
+  {
+    "name": "Scrum Master Day",
+    "url": "https://scrum.inside-agile.de",
+    "startDate": "2026-09-14",
+    "endDate": "2026-09-14",
+    "online": true,
+    "locales": "DE",
+    "cocUrl": "https://scrum.inside-agile.de/code_of_conduct.php"
+  },
+  {
+    "name": "uxcon vienna",
+    "url": "https://www.uxcon.io",
+    "startDate": "2026-09-16",
+    "endDate": "2026-09-17",
+    "city": "Vienna",
+    "country": "Austria",
+    "online": true,
+    "locales": "EN",
+    "cocUrl": "https://www.uxcon.io/community-etiquette",
+    "cfpUrl": "https://forms.cloud.microsoft/e/UJpffgFHP8",
+    "cfpEndDate": "2026-02-15"
+  },
+  {
+    "name": "Future Builders",
+    "url": "https://www.futurebuilders.io",
+    "startDate": "2026-09-18",
+    "endDate": "2026-09-18",
+    "city": "Vienna",
+    "country": "Austria",
+    "online": false,
+    "locales": "EN",
+    "cocUrl": "https://www.futurebuilders.io/community-etiquette"
+  },
+  {
+    "name": "Future Product Days",
+    "url": "https://www.futureproductdays.com",
+    "startDate": "2026-09-22",
+    "endDate": "2026-09-24",
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "online": false,
+    "locales": "EN"
+  },
+  {
+    "name": "Fast Flow Conf",
+    "url": "https://www.fastflowconf.com",
+    "startDate": "2026-10-13",
+    "endDate": "2026-10-13",
+    "city": "London",
+    "country": "U.K.",
+    "online": false,
+    "locales": "EN",
+    "offersSignLanguageOrCC": true,
+    "cocUrl": "https://www.fastflowconf.com/code-of-conduct"
+  },
+  {
+    "name": "Just Product",
+    "url": "https://www.justproduct.de",
+    "startDate": "2026-10-16",
+    "endDate": "2026-10-16",
+    "city": "Munich",
+    "country": "Germany",
+    "online": true,
+    "locales": "EN"
+  },
+  {
+    "name": "Wey Wey Web",
+    "url": "https://weyweyweb.com",
+    "startDate": "2026-10-29",
+    "endDate": "2026-10-30",
+    "city": "Malaga",
+    "country": "Spain",
+    "online": true,
+    "locales": "EN",
+    "cocUrl": "https://berlincodeofconduct.org/en",
+    "cfpUrl": "https://confeti.app/events/weyweyweb-2026",
+    "cfpEndDate": "2026-03-31",
+    "bluesky": "weyweyweb.bsky.social",
+    "twitter": "@WeyWeyWeb"
+  },
+  {
+    "name": "inside agile Product Owner Day",
+    "url": "https://pod.inside-agile.de",
+    "startDate": "2026-11-19",
+    "endDate": "2026-11-19",
+    "online": true,
+    "locales": "DE",
+    "cocUrl": "https://pod.inside-agile.de/code_of_conduct.php"
+  }
+]

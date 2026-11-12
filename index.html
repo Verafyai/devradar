@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevRadar</title>
+<meta name="description" content="Agentic DevRel. Automate, streamline, optimize and schedule your developer relations and community work.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">
+      <img src="/favicon.svg" width="36" height="36" alt="">
+      <span class="brand-name">DevRadar</span>
+      <span class="brand-by">by Rex St. John</span>
+    </a>
+    <div class="header-actions">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/how-it-works">How it works</a>
+        <a href="/pricing">Pricing</a>
+      </nav>
+      <div id="account-slot">
+        <button class="btn btn-outline" type="button" data-action="sign-in">Sign in</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="radar-wrap"><svg class="radar" viewBox="0 0 900 640" role="img" aria-label="Radar of developer touchpoints: GitHub, Discord, docs, npm, SDK, API, meetups, hackathons, X and Reddit"><line x1="120.0" y1="300.0" x2="920.0" y2="300.0" stroke="#1d4a34" stroke-width="1.1" opacity="0.85"/><line x1="237.2" y1="17.2" x2="802.8" y2="582.8" stroke="#1d4a34" stroke-width="1.1" opacity="0.85"/><line x1="520.0" y1="-100.0" x2="520.0" y2="700.0" stroke="#1d4a34" stroke-width="1.1" opacity="0.85"/><line x1="802.8" y1="17.2" x2="237.2" y2="582.8" stroke="#1d4a34" stroke-width="1.1" opacity="0.85"/><circle cx="520" cy="300" r="70" fill="none" stroke="#1d4a34" stroke-width="1.2" opacity="0.90"/><circle cx="520" cy="300" r="130" fill="none" stroke="#1d4a34" stroke-width="1.2" opacity="0.78"/><circle cx="520" cy="300" r="190" fill="none" stroke="#1d4a34" stroke-width="1.2" opacity="0.66"/><circle cx="520" cy="300" r="250" fill="none" stroke="#1d4a34" stroke-width="1.2" opacity="0.54"/><circle cx="520" cy="300" r="320" fill="none" stroke="#1d4a34" stroke-width="1.2" opacity="0.42"/><circle cx="520" cy="300" r="390" fill="none" stroke="#1d4a34" stroke-width="1.2" opacity="0.30"/><g class=""><circle cx="410" cy="78" r="3.5" fill="#143526"/><text x="422" y="83">API</text></g><g class=""><circle cx="500" cy="128" r="3.5" fill="#143526"/><text x="512" y="133">DevConf</text></g><g class="lit"><circle cx="650" cy="96" r="5" fill="#5CD68C"/><text x="662" y="101">Discord</text></g><g class="lit"><circle cx="790" cy="72" r="5" fill="#5CD68C"/><text x="802" y="77">GitHub</text></g><g class=""><circle cx="300" cy="214" r="3.5" fill="#143526"/><text x="312" y="219">npm</text></g><g class=""><circle cx="372" cy="274" r="3.5" fill="#143526"/><text x="384" y="279">Reddit</text></g><g class="lit"><circle cx="710" cy="214" r="5" fill="#5CD68C"/><text x="722" y="219">docs/</text></g><g class=""><circle cx="830" cy="286" r="3.5" fill="#143526"/><text x="842" y="291">SDK</text></g><g class=""><circle cx="690" cy="372" r="3.5" fill="#143526"/><text x="702" y="377">Meetup</text></g><g class=""><circle cx="448" cy="410" r="3.5" fill="#143526"/><text x="460" y="415">Hackathon</text></g><g class=""><circle cx="560" cy="500" r="3.5" fill="#143526"/><text x="572" y="505">X</text></g><circle cx="520" cy="300" r="4" fill="#F2F5F8"/></svg><div class="radar-sweep"></div></div>
+    <div class="shell"><div class="hero-copy">
+      <p class="eyebrow">DevRadar</p>
+      <h1>Agentic DevRel</h1>
+      <p class="lede">Automate, streamline, optimize and schedule your developer relations and community work with DevRadar's apps, plugins and extensions.</p>
+      <div id="hero-action">
+        <form id="hero-form" class="hero-form">
+          <input class="field" id="hero-url" name="url" placeholder="yourcompany.com" aria-label="Company website" autocomplete="url" autocapitalize="off" spellcheck="false">
+          <button class="btn-primary btn-lg" id="hero-submit" type="submit" disabled>Scan your company</button>
+        </form>
+        <p class="hint">Sign in to save your company. Takes about 90 seconds. · Search powered by Bright Data</p>
+        <p class="hero-error" id="hero-error" hidden></p>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section class="section" id="apps"><div class="shell">
+    <p class="eyebrow">Apps</p>
+    <h2>Everything a DevRel team runs, on autopilot</h2>
+    <p class="lede">Pick an app. Each one starts from your saved company profile.</p>
+    <div class="apps"><a class="app-card" href="/apps/event-scanner">
+      <span class="icon-tile" style="--app:#5CD68C"><img src="/icons/apps/event-scanner.svg" alt=""></span>
+      <h3>Event Scanner </h3>
+      <p>Find the conferences, meetups and hackathons where your target developers will be, by market and location.</p>
+      <span class="open">Open Event Scanner →</span>
+    </a>
+<a class="app-card" href="/apps/developer-profiler">
+      <span class="icon-tile" style="--app:#7FB2FF"><img src="/icons/apps/developer-profiler.svg" alt=""></span>
+      <h3>Developer Profiler <span class="pill pill-soon">SOON</span></h3>
+      <p>Profiles of the developers who use tools like yours: roles, stacks, languages and where they spend time.</p>
+      <span class="open">Open Developer Profiler →</span>
+    </a>
+<a class="app-card" href="/apps/social-trends">
+      <span class="icon-tile" style="--app:#F2B45C"><img src="/icons/apps/social-trends.svg" alt=""></span>
+      <h3>Social Trends <span class="pill pill-soon">SOON</span></h3>
+      <p>What developers in your space are talking about on X, Reddit, Hacker News and GitHub, this week.</p>
+      <span class="open">Open Social Trends →</span>
+    </a>
+<a class="app-card" href="/apps/influencers">
+      <span class="icon-tile" style="--app:#F28FB0"><img src="/icons/apps/influencers.svg" alt=""></span>
+      <h3>Influencers & Innovators <span class="pill pill-soon">SOON</span></h3>
+      <p>The builders, creators and maintainers who shape opinion in your category, ranked by real reach.</p>
+      <span class="open">Open Influencers & Innovators →</span>
+    </a>
+<a class="app-card" href="/apps/docs-scanner">
+      <span class="icon-tile" style="--app:#9C8CFF"><img src="/icons/apps/docs-scanner.svg" alt=""></span>
+      <h3>Docs & Code Scanner <span class="pill pill-soon">SOON</span></h3>
+      <p>A one-time audit of your docs, API reference and sample code for errors, gaps and agent readiness.</p>
+      <span class="open">Open Docs & Code Scanner →</span>
+    </a>
+<a class="app-card" href="/apps/looper">
+      <span class="icon-tile" style="--app:#4FD1D9"><img src="/icons/apps/looper.svg" alt=""></span>
+      <h3>Looper <span class="pill pill-soon">SOON</span></h3>
+      <p>Keeps docs, API and sample code in sync as your product changes. Finds breakages and drifted wording on every release.</p>
+      <span class="open">Open Looper →</span>
+    </a>
+<a class="app-card" href="/apps/competition">
+      <span class="icon-tile" style="--app:#FF8A6B"><img src="/icons/apps/competition.svg" alt=""></span>
+      <h3>Competition <span class="pill pill-soon">SOON</span></h3>
+      <p>Maps your competitors in a grid and grades each one against you on docs, DX, pricing and community.</p>
+      <span class="open">Open Competition →</span>
+    </a>
+<a class="app-card" href="/apps/deep-scan">
+      <span class="icon-tile" style="--app:#5CD68C"><img src="/icons/apps/deep-scan.svg" alt=""></span>
+      <h3>DevRadar Deep Scan <span class="pill pill-live">LIVE</span></h3>
+      <p>A full analysis of your site and docs, read the way an agent, a competitor and a developer would.</p>
+      <span class="open">Open DevRadar Deep Scan →</span>
+    </a>
+<a class="app-card" href="/apps/ideas">
+      <span class="icon-tile" style="--app:#F5D76E"><img src="/icons/apps/ideas.svg" alt=""></span>
+      <h3>Idea Generator <span class="pill pill-soon">SOON</span></h3>
+      <p>App, demo and content ideas generated from what developers in your space are building right now.</p>
+      <span class="open">Open Idea Generator →</span>
+    </a></div>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="shell"><p>© 2026 DevRadar by Rex St. John · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p></div></footer>
+<script src="/site.js" type="module"></script>
+</body>
+</html>

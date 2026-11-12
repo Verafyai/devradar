@@ -1,0 +1,68 @@
+[
+  {
+    "name": "SmashingConf Amsterdam",
+    "url": "https://smashingconf.com/amsterdam-2026",
+    "startDate": "2026-04-13",
+    "endDate": "2026-04-16",
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "online": true,
+    "locales": "EN",
+    "cocUrl": "https://smashingconf.com/codeofconduct",
+    "bluesky": "smashingconf.com"
+  },
+  {
+    "name": "JSHeroes",
+    "url": "https://jsheroes.io",
+    "startDate": "2026-05-14",
+    "endDate": "2026-05-15",
+    "city": "Cluj-Napoca",
+    "country": "Romania",
+    "online": false,
+    "locales": "EN",
+    "cocUrl": "https://jsheroes.io/coc",
+    "bluesky": "jsheroes.io",
+    "twitter": "@jsheroes"
+  },
+  {
+    "name": "Web Summer Camp",
+    "url": "https://websummercamp.com/2026",
+    "startDate": "2026-07-02",
+    "endDate": "2026-07-04",
+    "city": "Opatija",
+    "country": "Croatia",
+    "online": false,
+    "locales": "EN",
+    "cocUrl": "https://websummercamp.com/2026/code-of-conduct"
+  },
+  {
+    "name": "SmashingConf Freiburg",
+    "url": "https://smashingconf.com/freiburg-2026",
+    "startDate": "2026-09-07",
+    "endDate": "2026-09-10",
+    "city": "Freiburg",
+    "country": "Germany",
+    "online": false,
+    "locales": "EN",
+    "offersSignLanguageOrCC": true,
+    "cocUrl": "https://smashingconf.com/codeofconduct",
+    "bluesky": "smashingconf.com",
+    "mastodon": "@smashingconf@mastodon.social",
+    "twitter": "@smashingconf"
+  },
+  {
+    "name": "Wey Wey Web",
+    "url": "https://weyweyweb.com",
+    "startDate": "2026-10-29",
+    "endDate": "2026-10-30",
+    "city": "Malaga",
+    "country": "Spain",
+    "online": true,
+    "locales": "EN",
+    "cocUrl": "https://berlincodeofconduct.org/en",
+    "cfpUrl": "https://confeti.app/events/weyweyweb-2026",
+    "cfpEndDate": "2026-03-31",
+    "bluesky": "weyweyweb.bsky.social",
+    "twitter": "@WeyWeyWeb"
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "name": "AI SRE Summit",
+    "url": "https://komodor.com/ai-sre-summit-2026",
+    "startDate": "2026-05-12",
+    "endDate": "2026-05-12",
+    "online": true,
+    "locales": "EN",
+    "cocUrl": "https://komodor.com/privacy-policy/",
+    "cfpUrl": "https://ai-sre-summit-2026.paperform.co",
+    "cfpEndDate": "2026-04-10",
+    "twitter": "@Komodor_com"
+  },
+  {
+    "name": "IaCConf",
+    "url": "https://www.iacconf.com/iacconf-2026",
+    "startDate": "2026-05-14",
+    "endDate": "2026-05-14",
+    "online": true,
+    "locales": "EN",
+    "cocUrl": "https://www.iacconf.com/terms",
+    "cfpUrl": "https://docs.google.com/forms/d/e/1FAIpQLSeY6-IlyYXSauF8Dg9cs7fHGKiSJqTcecdk_ARXOKHj6HNN6w/viewform",
+    "cfpEndDate": "2026-04-07"
+  },
+  {
+    "name": "TechSummit Amsterdam",
+    "url": "https://techsummit.io",
+    "startDate": "2026-09-30",
+    "endDate": "2026-09-30",
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "online": false,
+    "locales": "EN",
+    "cfpUrl": "https://pretalx.com/techsummit-2026/cfp",
+    "cfpEndDate": "2026-05-15"
+  },
+  {
+    "name": "FLOCK - The Autonomous-Ops Summit by NeuBird AI",
+    "url": "https://www.goflock.ai",
+    "startDate": "2026-10-14",
+    "endDate": "2026-10-14",
+    "city": "San Francisco, CA",
+    "country": "U.S.A.",
+    "online": false,
+    "locales": "EN",
+    "cfpUrl": "https://www.goflock.ai/call-for-papers#submit",
+    "cfpEndDate": "2026-09-21"
+  },
+  {
+    "name": "X-Ops Conference Dubai",
+    "url": "https://dubai.xopsconference.com/",
+    "startDate": "2026-10-15",
+    "endDate": "2026-10-17",
+    "city": "Dubai",
+    "country": "United Arab Emirates",
+    "online": false,
+    "locales": "EN",
+    "cfpUrl": "https://sessionize.com/x-ops-conference-2026",
+    "cfpEndDate": "2026-08-31",
+    "twitter": "@xopsconference"
+  },
+  {
+    "name": "JDD",
+    "url": "https://jdd.org.pl",
+    "startDate": "2026-10-20",
+    "endDate": "2026-10-21",
+    "city": "Kraków",
+    "country": "Poland",
+    "online": false,
+    "locales": "EN",
+    "twitter": "@JDD_Krakow"
+  },
+  {
+    "name": "SEV0",
+    "url": "https://sev0.com",
+    "startDate": "2026-10-27",
+    "endDate": "2026-10-27",
+    "city": "San Francisco, CA",
+    "country": "U.S.A.",
+    "online": false,
+    "locales": "EN",
+    "twitter": "@incident_io"
+  },
+  {
+    "name": "X-Ops Conference Madrid",
+    "url": "https://madrid.xopsconference.com/",
+    "startDate": "2026-11-19",
+    "endDate": "2026-11-21",
+    "city": "Madrid",
+    "country": "Spain",
+    "online": false,
+    "locales": "EN,ES",
+    "cfpUrl": "https://sessionize.com/x-ops-conference-2026",
+    "cfpEndDate": "2026-08-31",
+    "twitter": "@xopsconference"
+  }
+]

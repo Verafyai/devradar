@@ -1,0 +1,87 @@
+[
+  {
+    "name": "Unlocked Seattle",
+    "url": "https://unlockedconf.io",
+    "startDate": "2026-05-07",
+    "endDate": "2026-05-07",
+    "city": "Seattle, WA",
+    "country": "U.S.A.",
+    "online": false,
+    "locales": "EN",
+    "cfpUrl": "https://www.unlockedconf.io/call-for-speakers",
+    "cfpEndDate": "2026-04-17"
+  },
+  {
+    "name": "LDX3 London",
+    "url": "https://leaddev.com/leaddev-london",
+    "startDate": "2026-06-02",
+    "endDate": "2026-06-03",
+    "city": "London",
+    "country": "U.K.",
+    "online": false,
+    "locales": "EN",
+    "offersSignLanguageOrCC": true,
+    "cocUrl": "https://leaddev.com/code-conduct",
+    "cfpUrl": "https://leaddev.com/leaddev-call-proposals",
+    "cfpEndDate": "2026-01-04"
+  },
+  {
+    "name": "AI Coding Summit, London Edition",
+    "url": "https://aicodingsummit.com",
+    "startDate": "2026-07-06",
+    "endDate": "2026-07-07",
+    "city": "London",
+    "country": "U.K.",
+    "online": true,
+    "locales": "EN",
+    "cocUrl": "https://gitnation.com/coc",
+    "cfpUrl": "https://gitnation.com/events/ai-coding-summit-london/cfp",
+    "cfpEndDate": "2026-04-30",
+    "twitter": "@AICodingSummit"
+  },
+  {
+    "name": "LDX3 New York",
+    "url": "https://leaddev.com/leaddev-new-york",
+    "startDate": "2026-09-15",
+    "endDate": "2026-09-16",
+    "city": "New York, NY",
+    "country": "U.S.A.",
+    "online": false,
+    "locales": "EN",
+    "offersSignLanguageOrCC": true
+  },
+  {
+    "name": "AI X QA Leadership Summit - Autumn",
+    "url": "https://www.browserstack.com/events/qals-2026",
+    "startDate": "2026-09-23",
+    "endDate": "2026-09-23",
+    "online": true,
+    "locales": "EN",
+    "offersSignLanguageOrCC": true
+  },
+  {
+    "name": "S2N: Storage Server Network",
+    "url": "https://s2n.heise.de",
+    "startDate": "2026-11-03",
+    "endDate": "2026-11-04",
+    "city": "Berlin",
+    "country": "Germany",
+    "online": false,
+    "locales": "DE",
+    "cocUrl": "https://s2n.heise.de/code_of_conduct.php",
+    "cfpUrl": "https://s2n.heise.de/cfp.php",
+    "cfpEndDate": "2026-05-04"
+  },
+  {
+    "name": "LeadDev Berlin",
+    "url": "https://leaddev.com/leaddev-berlin",
+    "startDate": "2026-11-09",
+    "endDate": "2026-11-10",
+    "city": "Berlin",
+    "country": "Germany",
+    "online": false,
+    "locales": "EN",
+    "offersSignLanguageOrCC": true,
+    "cocUrl": "https://leaddev.com/code-conduct"
+  }
+]

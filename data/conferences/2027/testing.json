@@ -1,0 +1,55 @@
+[
+  {
+    "name": "Test Automation Days",
+    "url": "https://www.testautomationdays.com",
+    "startDate": "2027-03-03",
+    "endDate": "2027-03-04",
+    "city": "Hilversum",
+    "country": "Netherlands",
+    "online": false,
+    "locales": "EN",
+    "cocUrl": "https://www.testautomationdays.com/wp-content/uploads/2024/09/Conference-Code-of-Conduct_-TAD19.pdf",
+    "cfpUrl": "https://www.testautomationdays.com/call-for-cases",
+    "cfpEndDate": "2026-10-20",
+    "discountCode": "TAD50CTC"
+  },
+  {
+    "name": "ParisTestConf",
+    "url": "https://paristestconf.com",
+    "startDate": "2027-03-23",
+    "endDate": "2027-03-23",
+    "city": "Paris",
+    "country": "France",
+    "online": false,
+    "locales": "FR",
+    "offersSignLanguageOrCC": true,
+    "cfpUrl": "https://sessionize.com/paristestconf-2027",
+    "cfpEndDate": "2026-10-31"
+  },
+  {
+    "name": "STAREAST",
+    "url": "https://stareast.techwell.com",
+    "startDate": "2027-04-25",
+    "endDate": "2027-04-30",
+    "city": "Orlando, FL",
+    "country": "U.S.A.",
+    "online": true,
+    "locales": "EN",
+    "cfpUrl": "https://stareast.techwell.com/speak-stareast",
+    "cfpEndDate": "2026-09-06"
+  },
+  {
+    "name": "EuroSTAR Conference",
+    "url": "https://conference.eurostarsoftwaretesting.com",
+    "startDate": "2027-05-11",
+    "endDate": "2027-05-14",
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "online": false,
+    "locales": "EN",
+    "cocUrl": "https://conference.eurostarsoftwaretesting.com/anti-harassment-policy/",
+    "cfpUrl": "https://conference.eurostarsoftwaretesting.com/call-for-submissions",
+    "cfpEndDate": "2026-09-30",
+    "twitter": "@esconfes"
+  }
+]
