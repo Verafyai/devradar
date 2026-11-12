@@ -53923,6 +53923,22 @@ var CATEGORIES = [
       { name: "Flask", docsUrl: "https://flask.palletsprojects.com/" },
       { name: "FastAPI", docsUrl: "https://fastapi.tiangolo.com/" }
     ]
+  },
+  {
+    id: "agents",
+    label: "AI agents and MCP",
+    topic: "python",
+    phrases: ["model context protocol", "mcp server", "agent framework", "ai agents", "tool calling", "function calling"],
+    distinctive: ["mcp", "langchain", "langgraph", "llamaindex", "crewai", "autogen", "mastra"],
+    generic: ["agent", "agents", "llm", "llms"],
+    competitors: [
+      { name: "LangChain", docsUrl: "https://docs.langchain.com/" },
+      { name: "LlamaIndex", docsUrl: "https://docs.llamaindex.ai/" },
+      { name: "CrewAI", docsUrl: "https://docs.crewai.com/" },
+      { name: "Vercel AI SDK", docsUrl: "https://ai-sdk.dev/docs" },
+      { name: "OpenAI Agents SDK", docsUrl: "https://openai.github.io/openai-agents-python/" },
+      { name: "Mastra", docsUrl: "https://mastra.ai/docs" }
+    ]
   }
 ];
 var COMPANIONS = {
@@ -56275,15 +56291,21 @@ async function categoryFinding(ctx) {
   if (model && misclassifiedRuntime(ctx.domain, model.categoryId, model.competitors, text2)) model = null;
   let inferred = fromText ?? inferCategory("", ctx.domain);
   let source = model && model.competitors.length >= 3 ? "model" : fromText || inferred?.identity ? "docs" : "closest";
-  if (!inferred && source !== "model") {
-    inferred = inferCategory(text2, ctx.domain, 1) ?? inferCategory(ctx.domain, ctx.domain, 1);
-    if (inferred) source = "closest";
-  }
+  // A one-word match (score 1) is the weakest evidence there is: "sqlite" in an
+  // example once put modelcontextprotocol.io in edge databases. Search for real
+  // alternatives first, and fall back to the closest category only if search
+  // finds nothing.
+  const closest = !inferred && source !== "model" ? inferCategory(text2, ctx.domain, 1) ?? inferCategory(ctx.domain, ctx.domain, 1) : null;
   let competitors = corrected.length ? corrected : source === "model" && model ? model.competitors : inferred?.competitors ?? [];
   if (!corrected.length && competitors.length === 0) {
     const name = ctx.domain.split(".")[0] ?? ctx.domain;
     competitors = await guessFromSearch(name, identityDomain(ctx.domain));
     if (competitors.length > 0) source = "search";
+  }
+  if (!corrected.length && competitors.length === 0 && closest) {
+    inferred = closest;
+    source = "closest";
+    competitors = closest.competitors;
   }
   if (shell.dependent && shell.rawTextChars < 400 && competitors.length === 0 && !ctx.correction?.length) {
     return unknownResult("C1", ctx.docsUrl, shell.note, {
@@ -56309,7 +56331,7 @@ async function categoryFinding(ctx) {
       "C1",
       ctx.docsUrl,
       "the docs text did not match a category with public docs we can compare",
-      { text_sample: text2.slice(0, 400), categories_checked: ["baas", "framework", "http", "runtime", "build", "vector", "database", "orm", "auth", "payments", "hosting", "python-web"] }
+      { text_sample: text2.slice(0, 400), categories_checked: CATEGORIES.map((row) => row.id) }
     );
   }
   const fromCorrection = corrected.length > 0;
