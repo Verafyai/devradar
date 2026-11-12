@@ -1,0 +1,33 @@
+{
+  "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "functions": {
+    "api/scan.js": {
+      "maxDuration": "max"
+    },
+    "api/report.js": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    { "source": "/r/:token", "destination": "/api/report?token=:token" },
+    { "source": "/r/:token/", "destination": "/api/report?token=:token" }
+  ],
+  "headers": [
+    {
+      "source": "/r/:path*",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    },
+    {
+      "source": "/r/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="devradar-mark">
+  <title id="devradar-mark">DevRadar</title>
+  <rect width="48" height="48" rx="3" fill="#141A22"/>
+  <circle cx="24" cy="24" r="14" fill="none" stroke="#5B9BFF" stroke-width="2"/>
+  <circle cx="24" cy="24" r="8" fill="none" stroke="#8A97A8" stroke-width="2"/>
+  <path d="M24 24 L24 10 A14 14 0 0 1 33.9 14.1 Z" fill="#5B9BFF"/>
+  <circle cx="24" cy="24" r="2.4" fill="#FF6B5A"/>
+</svg>

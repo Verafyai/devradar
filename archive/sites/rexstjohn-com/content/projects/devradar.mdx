@@ -1,0 +1,73 @@
+---
+title: DevRadar
+date: "2026-10-20"
+kind: tool
+status: live
+categories: [agents]
+summary: A developer relations radar. Give it a docs URL and it scans the public docs and API surface for where AI agents and developers get stuck, with verbatim evidence on every finding. A project by Verafy.
+demo: https://devradar.rexstjohn.com
+links:
+  - label: Run a free scan
+    href: https://devradar.rexstjohn.com
+  - label: Pricing
+    href: https://devradar.rexstjohn.com/pricing/
+cover: /images/projects/devradar.webp
+images:
+  - src: /images/projects/devradar.webp
+    alt: The DevRadar homepage, with the headline Keep it current above a docs URL field and a Run the scan button
+    caption: The homepage. One input, a docs URL, and no signup before the scan.
+    fit: contain
+    matte: "#0B0E13"
+problem: |
+  A dev-tools company's documentation is now read by AI coding agents as
+  well as by developers. When the docs block an agent's user agent, render
+  only with JavaScript, or have no llms.txt or OpenAPI spec an agent can
+  find, the agent works from guesses. The team that owns the docs rarely
+  sees it happen.
+solution: |
+  DevRadar takes one input, a docs URL, and scans the public surface the way
+  an agent, a competitor and a developer would. The free scan runs two
+  stages today:
+
+  - **Docs.** Reachability, redirects, sitemap coverage, how much of each
+    page needs JavaScript to read, and whether a quickstart and code samples
+    can be found.
+  - **Agent readiness.** robots.txt policy for agent crawlers, whether the
+    docs answer an agent's user agent differently from a browser's,
+    llms.txt, OpenAPI discoverability, and whether an advertised MCP server
+    answers.
+
+  Stage 2 is the earlier AgentReady scanner, folded in.
+  agentready.rexstjohn.com now redirects here. The other stages,
+  competitors, events, personas and targeting, are shown on the progress
+  rail as queued and are not built yet.
+
+  Paid plans add a weekly re-scan:
+
+  - **Watch, $149 a month.** Weekly agent and docs scan with change alerts,
+    and a weekly sample-code test run.
+  - **Radar, $599 a month.** Adds a weekly buzz scan, events and CFPs for
+    your regions, and three tracked competitors.
+  - **Program, $2,500 a month.** Unlimited competitors, a monthly working
+    session and a maintained 3, 6, 9 and 12 month roadmap.
+
+  Plans are arranged by email for now. There is no checkout yet.
+analysis: |
+  Every finding carries the raw artifact it came from, the actual status
+  line, headers or snippet, or it is dropped. A check that cannot run is
+  reported as unknown, never as a failure, because a false positive in a
+  report forwarded to an engineering lead cannot be taken back.
+
+  The first finding is never paywalled. If the scan sees a 403 to ClaudeBot,
+  the free report shows the 403. Paid plans buy breadth and recurrence, not
+  the first fact.
+
+  There is no score, grade or leaderboard, and reports are unlisted. A score
+  starts an argument about methodology and moves the conversation off the
+  finding that mattered. The cost is a report that is harder to summarize in
+  one line.
+
+  The scanner is polite by design. It makes at most 60 requests per domain
+  per day across the whole platform, competitor domains included, and it
+  does nothing that looks like a security test.
+---

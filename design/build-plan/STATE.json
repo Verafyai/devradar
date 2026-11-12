@@ -1,0 +1,409 @@
+{
+  "loop_id": "devradar-evening-build",
+  "status": "active",
+  "paused_reason": null,
+  "window": {
+    "start": "2026-11-01",
+    "end": "2026-11-16",
+    "last_run_date": "2026-11-16"
+  },
+  "current_day": "D0",
+  "approvals": {
+    "create_repo": true,
+    "launch_briefs": true,
+    "golden_set": false,
+    "note": "Only Rex flips these, in chat. The loop never sets them to true itself."
+  },
+  "repo": {
+    "name": "Verafyai/devradar",
+    "exists": false,
+    "branch": "build/15day",
+    "pr": null,
+    "import_bundle": "/workspace/devradar-build/import/devradar-import.bundle",
+    "import_commit": "482c915",
+    "live_version_sha": "8538deff968c9239e2075334bf2c3e408271c80b"
+  },
+  "golden_set": {
+    "status": "proposed",
+    "companies": [
+      {
+        "category": "database",
+        "company": "Supabase",
+        "site": "https://supabase.com"
+      },
+      {
+        "category": "auth",
+        "company": "Clerk",
+        "site": "https://clerk.com"
+      },
+      {
+        "category": "payments API",
+        "company": "Stripe",
+        "site": "https://stripe.com"
+      },
+      {
+        "category": "AI SDK",
+        "company": "LangChain",
+        "site": "https://www.langchain.com"
+      },
+      {
+        "category": "observability",
+        "company": "Sentry",
+        "site": "https://sentry.io"
+      },
+      {
+        "category": "CLI tool",
+        "company": "Pulumi",
+        "site": "https://www.pulumi.com"
+      },
+      {
+        "category": "open-source framework",
+        "company": "Astro",
+        "site": "https://astro.build"
+      },
+      {
+        "category": "cloud platform",
+        "company": "Netlify",
+        "site": "https://www.netlify.com"
+      },
+      {
+        "category": "devtool startup",
+        "company": "Convex",
+        "site": "https://www.convex.dev"
+      },
+      {
+        "category": "hardware SDK",
+        "company": "Arduino",
+        "site": "https://www.arduino.cc"
+      }
+    ],
+    "alternates": [
+      "Turso",
+      "Hasura",
+      "Appwrite",
+      "Neon",
+      "PostHog"
+    ]
+  },
+  "days": {
+    "D0": {
+      "date": "2026-11-01",
+      "scope": "Repo and baseline",
+      "app": null,
+      "status": "brief_ready",
+      "brief": "briefs/D0.md",
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D1": {
+      "date": "2026-11-02",
+      "scope": "Foundations",
+      "app": "foundations",
+      "status": "brief_ready",
+      "brief": "briefs/D1.md",
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D2": {
+      "date": "2026-11-03",
+      "scope": "Deep Scan",
+      "app": "deep-scan",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D3": {
+      "date": "2026-11-04",
+      "scope": "Event Scanner (sources, deadlines, fit)",
+      "app": "event-scanner",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D4": {
+      "date": "2026-11-05",
+      "scope": "Event Scanner (plan, exports, directory)",
+      "app": "event-scanner",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D5": {
+      "date": "2026-11-06",
+      "scope": "Docs and Code (crawler, links, OpenAPI, agent readiness)",
+      "app": "docs-scanner",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D6": {
+      "date": "2026-11-07",
+      "scope": "Docs and Code (sandbox runs, agent run, Open PR)",
+      "app": "docs-scanner",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D7": {
+      "date": "2026-11-08",
+      "scope": "Competition",
+      "app": "competition",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D8": {
+      "date": "2026-11-09",
+      "scope": "Social Trends",
+      "app": "social-trends",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D9": {
+      "date": "2026-11-10",
+      "scope": "Developer Profiler",
+      "app": "developer-profiler",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D10": {
+      "date": "2026-11-11",
+      "scope": "Influencers",
+      "app": "influencers",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D11": {
+      "date": "2026-11-12",
+      "scope": "Idea Generator",
+      "app": "ideas",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D12": {
+      "date": "2026-11-13",
+      "scope": "Looper (GitHub app, webhooks, drift)",
+      "app": "looper",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D13": {
+      "date": "2026-11-14",
+      "scope": "Looper (fix PRs, report, guardrails)",
+      "app": "looper",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D14": {
+      "date": "2026-11-15",
+      "scope": "SEO and copy",
+      "app": "all",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    },
+    "D15": {
+      "date": "2026-11-16",
+      "scope": "Re-score and launch prep",
+      "app": "all",
+      "status": "pending",
+      "brief": null,
+      "agent": null,
+      "head_sha": null,
+      "exit_check": null,
+      "mech_flags_on": null,
+      "mech_flags_off": null,
+      "app_score": null,
+      "attempts": 0,
+      "notes": []
+    }
+  },
+  "baseline": {
+    "mech_overall": 54.6,
+    "measured_at": "2026-11-01T07:15:31-08:00",
+    "source": "evals/out/baseline-2026-11-01/mech.json",
+    "per_page": {
+      "home": 57.1,
+      "pricing": 57.1,
+      "event-scanner": 53.3,
+      "developer-profiler": 53.3,
+      "social-trends": 53.3,
+      "influencers": 53.3,
+      "docs-scanner": 53.3,
+      "looper": 53.3,
+      "competition": 53.3,
+      "deep-scan": 60.0,
+      "ideas": 53.3
+    }
+  },
+  "app_scores": {
+    "event-scanner": {
+      "spec_now": 42,
+      "spec_target": 80,
+      "measured": []
+    },
+    "developer-profiler": {
+      "spec_now": 16,
+      "spec_target": 68,
+      "measured": []
+    },
+    "social-trends": {
+      "spec_now": 15,
+      "spec_target": 76,
+      "measured": []
+    },
+    "influencers": {
+      "spec_now": 16,
+      "spec_target": 72,
+      "measured": []
+    },
+    "docs-scanner": {
+      "spec_now": 19,
+      "spec_target": 83,
+      "measured": []
+    },
+    "looper": {
+      "spec_now": 20,
+      "spec_target": 82,
+      "measured": []
+    },
+    "competition": {
+      "spec_now": 18,
+      "spec_target": 74,
+      "measured": []
+    },
+    "deep-scan": {
+      "spec_now": 54,
+      "spec_target": 80,
+      "measured": []
+    },
+    "ideas": {
+      "spec_now": 17,
+      "spec_target": 74,
+      "measured": []
+    }
+  },
+  "app_scores_note": "spec_now and spec_target are the spec's own estimates (section 3), not measurements. measured holds rows from evals/score.py only.",
+  "mech_history": [
+    {
+      "at": "2026-11-01T07:15:31-08:00",
+      "label": "baseline live",
+      "target": "https://devradar.rexstjohn.com",
+      "flags": "n/a",
+      "overall": 54.6
+    }
+  ],
+  "repeat_failures": {},
+  "backlog": [],
+  "open_questions": "QUESTIONS.md",
+  "runs": []
+}

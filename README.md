@@ -98,3 +98,16 @@ The account, company and waitlist functions (`api/auth-*`, `api/companies`, `api
 ## Deploy
 
 This directory is the Vercel project: static files at the root and functions in `api/`. `vercel.json` sets function durations, the report rewrites (`/r/:token`, `/api/report/:token`) and redirects from the retired app pages to the home page. `.vercelignore` keeps the repo-only files (`design/`, `test/`, `scripts/`) off the site. Specs and mockups for earlier versions are in `design/`.
+
+## Repository layout
+
+The live site is at the repository root. Repo-only material, kept off the site by `.vercelignore`:
+
+- `design/spec/`: product specs, including the October 20, 2026 build spec (`devradar-spec-v2.md` is an identical copy), the apps spec and the redesign spec.
+- `design/mockups/`: redesign and app mockups.
+- `design/artboards/`: early artboards and notes for the landing page, scan wizard, report teaser, pricing and phone layouts.
+- `design/build-plan/`: the fifteen-day evening build plan, open questions, run notes, briefs, evals and scores.
+- `archive/tools/`: earlier cron-scan and full-scan API source snapshots.
+- `archive/sites/rexstjohn-com/`: DevRadar project page sources for rexstjohn.com.
+- `archive/deploy/`: the old tarball deploy script and patches, from before the project deployed from this repo.
+

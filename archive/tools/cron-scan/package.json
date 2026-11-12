@@ -1,0 +1,12 @@
+{
+  "name": "devradar",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vercel/blob": "2.8.2",
+    "@vercel/functions": "3.10.1",
+    "node-html-parser": "7.0.1",
+    "undici": "7.16.0",
+    "yaml": "2.8.1"
+  }
+}

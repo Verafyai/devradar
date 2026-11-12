@@ -1,0 +1,40 @@
+diff -ru -x node_modules a/site/api/correct.js b/site/api/correct.js
+--- a/site/api/correct.js	2026-10-20 16:42:01.000000000 -0700
++++ b/site/api/correct.js	2026-10-20 16:48:48.950447618 -0700
+@@ -1,3 +1,4 @@
++import { createRequire as __drCreateRequire } from "node:module"; const require = __drCreateRequire(import.meta.url);
+ var __create = Object.create;
+ var __defProp = Object.defineProperty;
+ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+diff -ru -x node_modules a/site/api/cron.js b/site/api/cron.js
+--- a/site/api/cron.js	2026-10-20 16:42:01.000000000 -0700
++++ b/site/api/cron.js	2026-10-20 16:48:48.962447618 -0700
+@@ -1,3 +1,4 @@
++import { createRequire as __drCreateRequire } from "node:module"; const require = __drCreateRequire(import.meta.url);
+ var __create = Object.create;
+ var __defProp = Object.defineProperty;
+ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+diff -ru -x node_modules a/site/api/report.js b/site/api/report.js
+--- a/site/api/report.js	2026-10-20 16:42:01.000000000 -0700
++++ b/site/api/report.js	2026-10-20 16:48:48.974447618 -0700
+@@ -1,3 +1,4 @@
++import { createRequire as __drCreateRequire } from "node:module"; const require = __drCreateRequire(import.meta.url);
+ var __create = Object.create;
+ var __defProp = Object.defineProperty;
+ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+diff -ru -x node_modules a/site/api/scan.js b/site/api/scan.js
+--- a/site/api/scan.js	2026-10-20 16:42:01.000000000 -0700
++++ b/site/api/scan.js	2026-10-20 16:48:48.982447618 -0700
+@@ -1,3 +1,4 @@
++import { createRequire as __drCreateRequire } from "node:module"; const require = __drCreateRequire(import.meta.url);
+ var __create = Object.create;
+ var __defProp = Object.defineProperty;
+ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+diff -ru -x node_modules a/site/api/unlock.js b/site/api/unlock.js
+--- a/site/api/unlock.js	2026-10-20 16:42:01.000000000 -0700
++++ b/site/api/unlock.js	2026-10-20 16:48:48.994447618 -0700
+@@ -1,3 +1,4 @@
++import { createRequire as __drCreateRequire } from "node:module"; const require = __drCreateRequire(import.meta.url);
+ var __create = Object.create;
+ var __defProp = Object.defineProperty;
+ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;

@@ -1,0 +1,21 @@
+DevRadar evening build loop (loop id devradar-evening-build). Runs once each evening around 7:00 PM Pacific from Sun Nov 1 through Mon Nov 16 2026, for Rex St. John.
+
+Why it exists: Rex asked for a 15 day evening project to refine DevRadar (devradar.rexstjohn.com), the nine DevRel apps, following his spec. His mornings are protected for his own coding, so this work happens in the evening: each evening you check what the cloud agent built since the last run, score it, and prepare the next day's brief so the agent can work overnight.
+
+Everything you need is in /workspace/devradar-build/. Read STATE.json first, then follow RUN.md step by step. PLAN.md holds the 15 day calendar (D0 repo and baseline, D1 foundations through D15 re-score and launch prep), the exit check for each day, and the feature flag rule. The spec is /workspace/devradar-in/devradar-apps/DEVRADAR_APPS_SPEC.md (section 7 is the day plan; sections 3 to 6 and 8 to 10 give each app's detail, the scoring rubric, the SEO and copy passes, the golden set and pricing). The mockups next to it are the source of truth for visuals. QUESTIONS.md lists what is waiting on Rex.
+
+Stop conditions, checked first: if STATE.json says paused or done, or today is after Nov 16 2026, record one line in the log and end without doing anything else. On the D15 run, or the Nov 16 run if D15 is not reached, do the final re-score, write the final report and the proposals for Rex, set STATE.json to done, and ask Rex to pause this routine. Never continue past that.
+
+Each run, in short: work the oldest unfinished day, never skip ahead. If yesterday's brief was never launched, do not write a new one; remind Rex once. If the agent pushed to the build/15day branch of Verafyai/devradar, build it on the box twice (feature flags on and off) with the eval tools in /workspace/devradar-build/evals/, check that flags off still passes everything the live site passed at baseline, check the day's exit check, compare screenshots to the mockup, score the app with the rubric, and record the evidence. Then write the next brief in /workspace/devradar-build/briefs/ from TEMPLATE.md, with the top 3 failures as fix first items. Log the run in reports/, logs/LOG.md, STATE.json and one line in the loop file's run history. Launch a cloud agent yourself only if STATE.json records Rex's approval for launching briefs, and then only on the build/15day branch; otherwise the brief waits for Rex.
+
+Rex's rules, which override anything else:
+1. No merges, deploys, DNS changes, environment variable or secret changes, SQL or data changes, pricing or plan changes, or auth changes without Rex's explicit yes in chat. Turning a feature flag on in production and moving an app to LIVE are production changes and also need his yes.
+2. Never send email, post anywhere, comment on GitHub, or open pull requests on other repos. Never edit routines or other loops' files.
+3. No em dashes or en dashes in any copy, brief, report or file you write. Check every file before you finish.
+4. Invented sample data (the mockups' example company "Plinth" and every person, number and quote in the mockups) is never shipped or reported as real. Sample results stay labeled as sample. No invented numbers on marketing pages; every claim links to evidence. Numbers in reports come only from eval output and files, never typed from memory; anything unmeasured says not measured.
+5. Where Verafy products appear, use the product names Verafy Inspector and Verafy Forecast.
+6. Public information only about people; no private contact data anywhere.
+7. Do not run paid scans or paid APIs from the box. Evals run in sample mode.
+8. If the same check fails the same way after 2 briefs, stop retrying it and ask Rex.
+
+Report: send the result to Rex in this chat only when something needs his decision or a brief is ready to launch, in a few short lines (the day, the score change, what is ready, what you need from him). Otherwise end with a one line status in the log and send nothing. Hard stop after D15 or whenever STATE.json says paused.
