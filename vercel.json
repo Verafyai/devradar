@@ -3,54 +3,174 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "functions": {
-    "api/scan.js": { "maxDuration": 300 },
-    "api/report.js": { "maxDuration": 60 },
-    "api/overlay.js": { "maxDuration": 300 },
-    "api/unlock.js": { "maxDuration": 30 },
-    "api/correct.js": { "maxDuration": 300 },
-    "api/cron.js": { "maxDuration": 300 },
-    "api/health.js": { "maxDuration": 10 },
-    "api/buzz.js": { "maxDuration": 300 },
-    "api/github.js": { "maxDuration": 120 },
-    "api/datasets.js": { "maxDuration": 120 },
-    "api/company-scan.js": { "maxDuration": 60 },
-    "api/events.js": { "maxDuration": 30 },
-    "api/auth-magic.js": { "maxDuration": 20 },
-    "api/auth-callback.js": { "maxDuration": 20 },
-    "api/companies.js": { "maxDuration": 15 },
-    "api/session.js": { "maxDuration": 15 },
-    "api/plan.js": { "maxDuration": 15 },
-    "api/waitlist.js": { "maxDuration": 15 },
-    "api/auth-github.js": { "maxDuration": 15 },
-    "api/auth-google.js": { "maxDuration": 15 },
-    "api/auth-logout.js": { "maxDuration": 15 }
+    "api/scan.js": {
+      "maxDuration": 300
+    },
+    "api/report.js": {
+      "maxDuration": 60
+    },
+    "api/overlay.js": {
+      "maxDuration": 300
+    },
+    "api/unlock.js": {
+      "maxDuration": 30
+    },
+    "api/correct.js": {
+      "maxDuration": 300
+    },
+    "api/cron.js": {
+      "maxDuration": 300
+    },
+    "api/health.js": {
+      "maxDuration": 10
+    },
+    "api/buzz.js": {
+      "maxDuration": 300
+    },
+    "api/github.js": {
+      "maxDuration": 120
+    },
+    "api/datasets.js": {
+      "maxDuration": 120
+    },
+    "api/company-scan.js": {
+      "maxDuration": 60
+    },
+    "api/events.js": {
+      "maxDuration": 30
+    },
+    "api/auth-magic.js": {
+      "maxDuration": 20
+    },
+    "api/auth-callback.js": {
+      "maxDuration": 20
+    },
+    "api/companies.js": {
+      "maxDuration": 15
+    },
+    "api/session.js": {
+      "maxDuration": 15
+    },
+    "api/plan.js": {
+      "maxDuration": 15
+    },
+    "api/waitlist.js": {
+      "maxDuration": 15
+    },
+    "api/auth-github.js": {
+      "maxDuration": 15
+    },
+    "api/auth-google.js": {
+      "maxDuration": 15
+    },
+    "api/auth-logout.js": {
+      "maxDuration": 15
+    }
   },
-  "crons": [{ "path": "/api/cron", "schedule": "* * * * *" }],
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "* * * * *"
+    }
+  ],
   "redirects": [
-    { "source": "/scan", "destination": "/apps/deep-scan", "permanent": false },
-    { "source": "/scan/", "destination": "/apps/deep-scan", "permanent": false }
+    {
+      "source": "/scan",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/scan/",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/apps",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/apps/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/companies",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/companies/",
+      "destination": "/",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/r/:token", "destination": "/api/report?token=:token" },
-    { "source": "/r/:token/", "destination": "/api/report?token=:token" },
-    { "source": "/api/report/:token", "destination": "/api/report?token=:token&view=json" },
-    { "source": "/api/report/:token/", "destination": "/api/report?token=:token&view=json" },
-    { "source": "/api/health/", "destination": "/api/health" },
-    { "source": "/api/cron/", "destination": "/api/cron" },
-    { "source": "/api/overlay/", "destination": "/api/overlay" },
-    { "source": "/api/buzz/", "destination": "/api/buzz" },
-    { "source": "/api/github/", "destination": "/api/github" },
-    { "source": "/api/datasets/", "destination": "/api/datasets" },
-    { "source": "/api/scan/", "destination": "/api/scan" },
-    { "source": "/api/unlock/", "destination": "/api/unlock" },
-    { "source": "/api/correct/", "destination": "/api/correct" }
+    {
+      "source": "/r/:token",
+      "destination": "/api/report?token=:token"
+    },
+    {
+      "source": "/r/:token/",
+      "destination": "/api/report?token=:token"
+    },
+    {
+      "source": "/api/report/:token",
+      "destination": "/api/report?token=:token&view=json"
+    },
+    {
+      "source": "/api/report/:token/",
+      "destination": "/api/report?token=:token&view=json"
+    },
+    {
+      "source": "/api/health/",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/api/cron/",
+      "destination": "/api/cron"
+    },
+    {
+      "source": "/api/overlay/",
+      "destination": "/api/overlay"
+    },
+    {
+      "source": "/api/buzz/",
+      "destination": "/api/buzz"
+    },
+    {
+      "source": "/api/github/",
+      "destination": "/api/github"
+    },
+    {
+      "source": "/api/datasets/",
+      "destination": "/api/datasets"
+    },
+    {
+      "source": "/api/scan/",
+      "destination": "/api/scan"
+    },
+    {
+      "source": "/api/unlock/",
+      "destination": "/api/unlock"
+    },
+    {
+      "source": "/api/correct/",
+      "destination": "/api/correct"
+    }
   ],
   "headers": [
     {
       "source": "/r/:path*",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "Referrer-Policy", "value": "no-referrer" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        }
       ]
     }
   ]

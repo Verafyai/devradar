@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How it works · DevRadar</title>
-<meta name="description" content="Save your company once. Every DevRadar app starts from that profile.">
+<meta name="description" content="Paste your docs or website. DevRadar reads it politely and returns one report.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,26 +23,25 @@
     <div class="header-actions">
       <nav class="nav-links" aria-label="Primary">
         <a href="/how-it-works">How it works</a>
+        <a href="/docs">Docs</a>
         <a href="/pricing">Pricing</a>
       </nav>
-      <div id="account-slot">
-        <button class="btn btn-outline" type="button" data-action="sign-in">Sign in</button>
-      </div>
     </div>
   </div>
 </header>
 <main class="page"><div class="shell narrow">
     <p class="eyebrow">How it works</p>
-    <h1>Save the company once. Run the work from there.</h1>
-    <p class="lede">DevRadar is a home for DevRel apps. Sign in, pin a company, and each app starts from the same profile.</p>
+    <h1>Paste a URL. Get one report.</h1>
+    <p class="lede">The scan reads only public pages, identifies itself, and respects robots.txt.</p>
     <div class="steps">
-      <article class="step-card"><h2>1. Sign in</h2><p>GitHub, Google, or a magic link to your work email. No password. We never post on your behalf.</p></article>
-      <article class="step-card"><h2>2. Scan your company</h2><p>Paste a landing page. DevRadar reads the public site, respects robots.txt, and finds docs, API reference, GitHub and community links.</p></article>
-      <article class="step-card"><h2>3. Confirm the profile</h2><p>Fix anything we got wrong, then save. Saving a company does not claim ownership. Anyone can track any public company.</p></article>
-      <article class="step-card"><h2>4. Open an app</h2><p>Event Scanner and Deep Scan run today. The other apps are on the way. Join a waitlist and we will email you when one opens.</p></article>
+      <article class="step-card"><h2>1. Paste your docs or website</h2><p>No account. DevRadar finds your docs, API reference, GitHub and community links from there.</p></article>
+      <article class="step-card"><h2>2. DevRadar reads it</h2><p>It fetches pages as <code>DevRadar/0.1.0</code>, then as Chrome, ClaudeBot, GPTBot and curl to compare what each one gets. Requests are spaced out and every domain has a shared daily budget, so no site gets hammered.</p></article>
+      <article class="step-card"><h2>3. It looks outward</h2><p>It finds your competitors and runs their docs through the same checks, then gathers personas, events, communities, buzz on X, integrations and GitHub adoption.</p></article>
+      <article class="step-card"><h2>4. You get the report</h2><p>About 90 seconds, never more than 150. The report has an unlisted link you can share. Scanning the same domain again within 24 hours returns the same report.</p></article>
     </div>
+    <p class="fine">Everything the scan checks is listed on the <a href="/">home page</a>. The API and the MCP server are in the <a href="/docs">docs</a>.</p>
   </div></main>
 <footer class="site-footer"><div class="shell"><p>© 2026 DevRadar by Rex St. John · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p></div></footer>
-<script src="/site.js" type="module"></script>
+<script src="/scan-form.js" type="module"></script>
 </body>
 </html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs · DevRadar</title>
+<meta name="description" content="Run DevRadar from the HTTP API or from an agent through the DevRadar MCP server.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/">
+      <img src="/favicon.svg" width="36" height="36" alt="">
+      <span class="brand-name">DevRadar</span>
+      <span class="brand-by">by Rex St. John</span>
+    </a>
+    <div class="header-actions">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/how-it-works">How it works</a>
+        <a href="/docs">Docs</a>
+        <a href="/pricing">Pricing</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<main class="page"><div class="shell narrow prose docs">
+    <p class="eyebrow">Docs</p>
+    <h1>DevRadar docs</h1>
+    <p class="lede">Run the scan from the site, from the HTTP API, or from any agent that speaks MCP.</p>
+
+    <h2 id="scan">Run a scan</h2>
+    <p>Paste a docs or website URL on the <a href="/">home page</a>. The report opens when the scan finishes, in about 90 seconds. Reports are unlisted: anyone with the link can read one, and nothing links to it.</p>
+
+    <h2 id="api">HTTP API</h2>
+    <h3>Start a scan</h3>
+    <pre><code>curl -X POST https://devradar.rexstjohn.com/api/scan \
+  -H 'content-type: application/json' \
+  -d '{"url": "docs.example.com"}'</code></pre>
+    <table><tbody>
+      <tr><td><code>202</code></td><td>Started. Returns <code>token</code> and <code>reportUrl</code>.</td></tr>
+      <tr><td><code>200</code></td><td>This domain was scanned in the last 24 hours. Returns that report, with <code>reused: true</code>.</td></tr>
+      <tr><td><code>409</code></td><td>The domain's daily request budget is used up. Returns an <code>error</code> naming the reset time, and the last report if there is one.</td></tr>
+      <tr><td><code>429</code></td><td>This address started 8 scans in the last hour.</td></tr>
+      <tr><td><code>400</code></td><td>The URL cannot be scanned.</td></tr>
+    </tbody></table>
+    <h3>Read a report</h3>
+    <pre><code>curl https://devradar.rexstjohn.com/api/report/TOKEN</code></pre>
+    <p>Returns the report as JSON. <code>status</code> is <code>running</code> until the scan finishes, then <code>done</code>, so poll every few seconds. The main fields:</p>
+    <table><tbody>
+      <tr><td><code>headline</code></td><td>The one-line summary, once the scan is done.</td></tr>
+      <tr><td><code>findings</code></td><td>One entry per check: <code>probe</code>, <code>result</code> (pass, fail, info or unknown), <code>severity</code>, <code>headline</code>, the <code>url</code> it looked at, and the <code>evidence</code> behind it.</td></tr>
+      <tr><td><code>competitors</code></td><td>The competitors the scan found, with their docs URLs.</td></tr>
+      <tr><td><code>banner</code></td><td>The most serious problem, if there is one.</td></tr>
+      <tr><td><code>ceilingHit</code></td><td>True when the 150-second limit cut the scan short. Checks it did not reach come back as <code>unknown</code>.</td></tr>
+    </tbody></table>
+
+    <h2 id="mcp">MCP server</h2>
+    <p>The DevRadar MCP server lets Claude Code, Cursor, Codex and other agents run the scan and read the report. It needs Node 20 or later and no API key. Add it to your agent's MCP settings:</p>
+    <pre><code>{
+  "mcpServers": {
+    "devradar": {
+      "command": "npx",
+      "args": ["-y", "github:Verafyai/devradar"]
+    }
+  }
+}</code></pre>
+    <p>In Claude Code: <code>claude mcp add devradar -- npx -y github:Verafyai/devradar</code></p>
+    <p>The server is one file with no dependencies. To run it without npx, download <a href="/mcp/server.js"><code>server.js</code></a> and use <code>node /path/to/server.js</code> as the command.</p>
+    <table><tbody>
+      <tr><td><code>devradar_scan</code></td><td>Scan a docs or website URL. Waits for the report by default and returns its summary and link.</td></tr>
+      <tr><td><code>devradar_report</code></td><td>Read a report by token or link: headline, every finding, and the competitors found.</td></tr>
+    </tbody></table>
+    <p>Set <code>DEVRADAR_URL</code> to point the server at another deployment.</p>
+
+    <h2 id="limits">How it treats your site</h2>
+    <ul class="plain-list">
+      <li>Every request identifies itself as <code>DevRadar/0.1.0</code>, with a link back to this site.</li>
+      <li>It respects robots.txt and fetches only public pages.</li>
+      <li>Requests to a host are spaced at least 400 ms apart.</li>
+      <li>Each domain has one request budget per 24 hours, shared by everyone who scans it.</li>
+      <li>We never publish who failed a check.</li>
+    </ul>
+    <p>Questions: <a href="mailto:rex@verafy.ai">rex@verafy.ai</a>.</p>
+  </div></main>
+<footer class="site-footer"><div class="shell"><p>© 2026 DevRadar by Rex St. John · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p></div></footer>
+<script src="/scan-form.js" type="module"></script>
+</body>
+</html>

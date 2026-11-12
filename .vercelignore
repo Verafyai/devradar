@@ -1,0 +1,7 @@
+# Repo-only files. Vercel serves everything at the root, so keep these out.
+design
+test
+scripts
+mcp/*.md
+dev-server.mjs
+README.md

@@ -300,3 +300,18 @@ select.field { appearance: none; background-image: linear-gradient(45deg, transp
   .link-row { grid-template-columns: 1fr; gap: 2px; padding: 8px 0; }
   .section h2 { font-size: 32px; }
 }
+
+/* One-scan home: the coverage cards are not links. */
+.app-card.cover { cursor: default; }
+.app-card.cover:hover { background: var(--surface); border-color: var(--line); }
+
+/* Docs page */
+.docs h3 { font-size: 19px; margin: 22px 0 8px; }
+.docs code { font-family: var(--mono); font-size: 14px; color: var(--text); }
+.docs pre { margin: 12px 0 16px; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; }
+.docs pre code { font-size: 14px; line-height: 1.55; white-space: pre; }
+.docs table { margin: 8px 0 16px; }
+.docs td { padding: 10px 8px; border-top: 1px solid var(--line); vertical-align: top; color: var(--text-2); font-size: 16px; }
+.docs td:first-child { white-space: nowrap; width: 1%; }
+.step-card code { font-family: var(--mono); font-size: 14px; }
+.docs td:last-child { text-align: left; }
